@@ -1,22 +1,175 @@
+/* ── Reset & Base ─────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: Calibri, sans-serif;
-  background-color: #e8e8e8;
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 0 20px;
-  color: #000;
+  background-color: #faf9f7;
+  color: #1a1a1a;
+  line-height: 1.7;
 }
 
-h1 {
+/* ── Nav ──────────────────────────────────────────────── */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.2rem 2rem;
+  border-bottom: 1px solid #e0ddd8;
+  position: sticky;
+  top: 0;
+  background-color: #faf9f7;
+  z-index: 100;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: #6b6b6b;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #c0392b;
+}
+
+/* ── Main Content Wrapper ────────────────────────────── */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+}
+
+/* ── Hero Section ────────────────────────────────────── */
+.hero {
+  padding: 5rem 0 1.5rem;
+  text-align: center;
+}
+
+.hero-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e67e22;
+  margin-bottom: 0.75rem;
+}
+
+.hero-name {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+
+.hero-tagline {
+  font-size: 1.2rem;
+  color: #6b6b6b;
+  margin-bottom: 1.5rem;
+}
+
+.hero-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, #c0392b, #e67e22);
+  border-radius: 2px;
+  margin: 0 auto 0.5rem;
+}
+
+.hero-intro {
+  font-size: 1.05rem;
+  color: #3a3a3a;
+}
+
+/* ── About Photo ─────────────────────────────────────── */
+.about-photo {
+  display: block;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.5rem;
+  border: 3px solid #e0ddd8;
+}
+
+/* ── About Section ───────────────────────────────────── */
+.about {
+  padding: 1rem 0 2rem;
+}
+
+.about-card {
+  background-color: #ffffff;
+  border-left: 4px solid #c0392b;
+  border-radius: 4px;
+  padding: 2.2rem 2.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.about-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1.1rem;
+}
+
+.about-card p {
+  font-size: 1rem;
+  color: #3a3a3a;
+  margin-bottom: 0.9rem;
+}
+
+.about-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Contact Section ─────────────────────────────────── */
+.contact-section {
+  padding: 5rem 0 4rem;
+  text-align: center;
+}
+
+.contact-section h1 {
   font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.75rem;
 }
 
-h2 {
-  font-size: 1.75rem;
-  margin-top: 2rem;
+.contact-section p {
+  font-size: 1rem;
+  color: #6b6b6b;
+  margin-bottom: 2rem;
 }
 
-h3 {
-  font-size: 1.25rem;
-  color: #000;
+.linkedin-logo {
+  display: inline-block;
+  width: 52px;
+  height: 52px;
+  transition: opacity 0.2s;
+}
+
+.linkedin-logo:hover {
+  opacity: 0.8;
+}
+
+/* ── Footer ──────────────────────────────────────────── */
+footer {
+  border-top: 1px solid #e0ddd8;
+  text-align: center;
+  padding: 1.5rem 2rem;
+  font-size: 0.85rem;
+  color: #6b6b6b;
 }
