@@ -350,6 +350,35 @@ main {
   box-shadow: 0 12px 28px rgba(255, 123, 0, 0.2);
 }
 
+/* — Project Button ——————————————————————————————— */
+.project-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 2.2rem;
+  background: var(--color-bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  color: var(--color-text-1);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 8px 24px var(--color-card-shadow);
+  margin: 0.4rem;
+}
+
+.project-btn:hover {
+  background: rgba(255, 123, 0, 0.1);
+  border-color: var(--color-accent-org);
+  color: var(--color-accent-org);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(255, 123, 0, 0.2);
+}
+
 /* — Footer —————————————————————————————————————— */
 footer {
   border-top: 1px solid var(--color-border);

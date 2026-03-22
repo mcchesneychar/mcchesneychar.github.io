@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ramen Ratings Dashboard — CCM's Portfolio</title>
+  <link rel="stylesheet" href="../../../uncs-style.css">
+  <script src="../../../theme.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* ── Dashboard-scoped overrides ──────────────────────────────── */
+    main {
+      max-width: 1200px;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .dashboard-hero {
+      padding: 4rem 0 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .dashboard-hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255, 123, 0, 0.12) 0%, transparent 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .dashboard-hero h1 {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--color-text-1);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+
+    .dashboard-hero p {
+      font-size: 1rem;
+      color: var(--color-text-3);
+      margin-bottom: 2rem;
+    }
+
+    /* Controls row */
+    .controls-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+      background: var(--color-bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px var(--color-card-shadow);
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+    }
+
+    .control-group label {
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--color-text-2);
+      white-space: nowrap;
+      font-size: 0.85rem;
+    }
+
+    .control-group select {
+      padding: 6px 10px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      cursor: pointer;
+      background: var(--color-bg-card);
+      color: var(--color-text-1);
+      font-family: var(--font-sans);
+      backdrop-filter: blur(8px);
+      transition: border-color 0.2s ease;
+    }
+
+    .control-group select:focus {
+      outline: none;
+      border-color: var(--color-accent-org);
+    }
+
+    .control-group input[type=range] {
+      width: 130px;
+      cursor: pointer;
+      accent-color: var(--color-accent-org);
+    }
+
+    .slider-val {
+      min-width: 24px;
+      text-align: center;
+      font-weight: 700;
+      color: var(--color-accent-org);
+      font-size: 0.95rem;
+      font-family: var(--font-display);
+    }
+
+    /* Badges */
+    .metric-badges {
+      display: flex;
+      gap: 0.6rem;
+      margin-left: auto;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(255, 123, 0, 0.1);
+      color: var(--color-accent-org);
+      border: 1px solid rgba(255, 123, 0, 0.3);
+      border-radius: 100px;
+      padding: 4px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: var(--font-display);
+      white-space: nowrap;
+    }
+
+    /* Chart grid */
+    .chart-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .chart-grid { grid-template-columns: 1fr; }
+      .controls-row { padding: 0.8rem 1rem; }
+      .dashboard-hero h1 { font-size: 2rem; }
+    }
+
+    /* Panels — styled like about-card */
+    .panel {
+      background: linear-gradient(
+        135deg,
+        var(--color-bg-card),
+        rgba(255, 123, 0, 0.07),
+        rgba(255, 42, 95, 0.05),
+        var(--color-bg-card)
+      );
+      background-size: 300% 300%;
+      animation: gradientShift 20s ease infinite reverse;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 123, 0, 0.15);
+      border-radius: 20px;
+      padding: 1.5rem 1.6rem 1.2rem;
+      box-shadow: 0 8px 32px var(--color-card-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      min-height: 370px;
+    }
+
+    .panel-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text-1);
+      border-bottom: 1px solid rgba(255, 123, 0, 0.2);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .panel-subtitle {
+      font-size: 0.76rem;
+      color: var(--color-text-3);
+      margin-top: -4px;
+    }
+
+    .panel-ext-label {
+      display: inline-block;
+      background: rgba(255, 183, 0, 0.12);
+      color: var(--color-accent-yel);
+      border: 1px solid rgba(255, 183, 0, 0.3);
+      border-radius: 6px;
+      padding: 1px 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      font-family: var(--font-display);
+      letter-spacing: 0.03em;
+      margin-bottom: 2px;
+    }
+
+    .chart-container {
+      position: relative;
+      flex: 1;
+      min-height: 240px;
+    }
+
+    /* Country selects in Panel 4 */
+    .country-selects {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      margin-bottom: 0.4rem;
+    }
+
+    .country-selects label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-family: var(--font-display);
+      color: var(--color-text-3);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .country-selects select {
+      padding: 5px 10px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      background: var(--color-bg-card);
+      color: var(--color-text-1);
+      cursor: pointer;
+      min-width: 150px;
+      font-family: var(--font-sans);
+    }
+
+    .country-selects select:focus {
+      outline: none;
+      border-color: var(--color-accent-org);
+    }
+
+    /* Comparison table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin-top: 6px;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      border: 1px solid var(--color-border);
+      padding: 5px 10px;
+      text-align: center;
+      color: var(--color-text-2);
+    }
+
+    .comparison-table th {
+      background: rgba(255, 123, 0, 0.08);
+      color: var(--color-text-1);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+
+    .comparison-table tr:nth-child(even) td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Footer note */
+    .dashboard-footer-note {
+      text-align: center;
+      padding: 1.2rem 1rem 0;
+      font-size: 0.78rem;
+      color: var(--color-text-3);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-spacer" aria-hidden="true"></div>
+      <ul class="nav-links">
+        <li><a href="../../../index.html">Home</a></li>
+        <li><a href="../../../projects.html" class="active">Projects</a></li>
+        <li><a href="../../../contact.html">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="dashboard-hero">
+      <p class="hero-label">Agentic Coding</p>
+      <h1>Ramen Ratings Dashboard</h1>
+      <p>Interactive analysis of 2,577 ramen product reviews across 42+ countries, 355 brands, and 11 styles</p>
+      <div class="hero-divider"></div>
+    </div>
+
+    <div class="controls-row">
+      <div class="control-group">
+        <label for="styleFilter">Style Filter:</label>
+        <select id="styleFilter"></select>
+      </div>
+      <div class="control-group">
+        <label for="minReviews">Min Reviews (Panel 1):</label>
+        <input type="range" id="minReviews" min="5" max="50" step="5" value="5" />
+        <span class="slider-val" id="minReviewsVal">5</span>
+      </div>
+      <div class="metric-badges">
+        <span class="badge" id="badgeFiltered">Filtered Products: —</span>
+        <span class="badge" id="badgeCountries">Countries Shown: —</span>
+      </div>
+    </div>
+
+    <div class="chart-grid">
+
+      <!-- Panel 1 -->
+      <div class="panel">
+        <div class="panel-title">Avg Rating by Country</div>
+        <div class="panel-subtitle">Countries with ≥ <span id="p1MinLabel">5</span> reviews shown. Sorted by avg rating descending.</div>
+        <div class="chart-container"><canvas id="chart1"></canvas></div>
+      </div>
+
+      <!-- Panel 2 -->
+      <div class="panel">
+        <div class="panel-title">Style Distribution</div>
+        <div class="panel-subtitle">Product count per style. Blank styles excluded.</div>
+        <div class="chart-container"><canvas id="chart2"></canvas></div>
+      </div>
+
+      <!-- Panel 3 -->
+      <div class="panel">
+        <div class="panel-title">Top 10 Brands by Review Count</div>
+        <div class="panel-subtitle">Filtered by current Style and Country selections.</div>
+        <div class="chart-container"><canvas id="chart3"></canvas></div>
+      </div>
+
+      <!-- Panel 4 -->
+      <div class="panel">
+        <span class="panel-ext-label">Extension Feature</span>
+        <div class="panel-title">Country Comparison</div>
+        <div class="country-selects">
+          <div>
+            <label for="countryA">Country A:</label>
+            <select id="countryA"></select>
+          </div>
+          <div>
+            <label for="countryB">Country B:</label>
+            <select id="countryB"></select>
+          </div>
+        </div>
+        <div class="chart-container" style="min-height:180px;"><canvas id="chart4"></canvas></div>
+        <table class="comparison-table" id="compTable">
+          <thead><tr><th>Metric</th><th id="thA">Country A</th><th id="thB">Country B</th></tr></thead>
+          <tbody>
+            <tr><td>Avg Rating</td><td id="tdA_avg">—</td><td id="tdB_avg">—</td></tr>
+            <tr><td>Review Count</td><td id="tdA_cnt">—</td><td id="tdB_cnt">—</td></tr>
+            <tr><td>Quality Score (0–5)</td><td id="tdA_qs">—</td><td id="tdB_qs">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <p class="dashboard-footer-note">
+      Data quality note: Only countries with ≥ <span id="footerMin">5</span> reviewed products are shown in Panel 1.
+      Blank style values are excluded from style analysis. Stars values that cannot be parsed as numbers are excluded from all calculations.
+    </p>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 CCM</p>
+  </footer>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// Embedded CSV data
+// ─────────────────────────────────────────────────────────────────────────────
+const RAW_CSV = `Brand,Variety,Style,Country,Stars
+New Touch,T's Restaurant Tantanmen ,Cup,Japan,3.75
+Just Way,Noodles Spicy Hot Sesame Spicy Hot Sesame Guan-miao Noodles,Pack,Taiwan,1
+Nissin,Cup Noodles Chicken Vegetable,Cup,USA,2.25
+Wei Lih,GGE Ramen Snack Tomato Flavor,Pack,Taiwan,2.75
+Ching's Secret,Singapore Curry,Pack,India,3.75
+Samyang Foods,Kimchi song Song Ramen,Pack,South Korea,4.75
+Acecook,Spice Deli Tantan Men With Cilantro,Cup,Japan,4
+Ikeda Shoku,Nabeyaki Kitsune Udon,Tray,Japan,3.75
+Ripe'n'Dry,Hokkaido Soy Sauce Ramen,Pack,Japan,0.25
+KOKA,The Original Spicy Stir-Fried Noodles,Pack,Singapore,2.5
+Tao Kae Noi,Creamy tom Yum Kung Flavour,Pack,Thailand,5
+Yamachan,Yokohama Tonkotsu Shoyu,Pack,USA,5
+Nongshim,Mr. Bibim Stir-Fried Kimchi Flavor,Pack,South Korea,4.25
+Nissin,Deka Buto Kimchi Pork Flavor,Bowl,Japan,4.5
+Nissin,Demae Ramen Bar Noodle Aka Tonkotsu Flavour Instant Noodle,Pack,Hong Kong,5
+KOKA,Mushroom Flavour Instant Noodles,Cup,Singapore,3.5
+TRDP,Mario Masala Noodles,Pack,India,3.75
+Yamachan,Tokyo Shoyu Ramen,Pack,USA,5
+Binh Tay,Mi Hai Cua,Pack,Vietnam,4
+Paldo,Premium Gomtang,Pack,South Korea,4
+Nissin,Cup Noodles Laksa Flavour,Cup,Hong Kong,4.25
+Jackpot Teriyaki,Beef Ramen,Pack,USA,5
+KOKA,Creamy Soup With Crushed Noodles Hot & Sour Fish Flavor,Cup,Singapore,5
+Yamachan,Sapporo Miso Ramen,Pack,USA,4.75
+Ching's Secret,Hot Garlic Instant Noodles,Pack,India,4.25
+Samyang Foods,Song Song Kimchi Big Bowl,Bowl,South Korea,4.25
+Yum-Mie,Instant Noodles Beef In Light Soup Flavour,Pack,Ghana,3.5
+Nissin,Hakata Ramen Noodle White Tonkotsu,Bowl,Japan,4.75
+MyKuali,Penang White Curry Rice Vermicelli Soup,Bowl,Malaysia,5
+KOKA,Signature Tom Yum Flavor Instant Noodles,Pack,Singapore,4
+Samyang Foods,Paegaejang Ramen,Pack,South Korea,5
+Nissin,Gekikara Ramen Extra Hot Ramen Goreng,Pack,Indonesia,4.5
+Sichuan Guangyou,Chongqing Spicy Hot Noodles,Bowl,China,4
+New Touch,Sugo-Men Kyoto Backfat Shoyu Ramen,Bowl,Japan,3.75
+KOKA,Instant Noodles Laksa Singapura Flavour,Pack,Singapore,5
+Lipton,Cup-A-Soup Chicken Noodle With White Meat Instant Soup,Box,USA,1.5
+KOKA,Curry Flavour Instant Noodles,Cup,Singapore,5
+Acecook,Super Cup Yochan Ika Yakisoba,Tray,Japan,1.5
+Nissin,Cup Noodles Very Veggie Spicy Chicken Flavor Ramen Noodle Soup,Cup,USA,5
+Wei Lih,GGE Noodle Snack Wheat Crackers Mexican Spicy,Pack,Taiwan,3.25
+Nissin,Demae Iccho Tonkotsu Flavour Instant Noodle,Cup,Hong Kong,3.75
+Nissin,Cup Noodles Very Veggie Beef Flavor Ramen Noodle Soup,Cup,USA,5
+Nissin,Cup NoodlesTom Yam Seafood (More Shrimptacular),Cup,Singapore,5
+Lele,Instant Noodles Beef,Pack,Ghana,3.5
+Nissin,Cup Noodles Very Veggie Chicken Flavor Ramen Noodle Soup,Cup,USA,5
+Fujiwara,Hokkaido Hakodate Shoyu Ramen,Pack,Japan,4
+Nongshim,Shin Ramyun Black,Pack,South Korea,5
+Nissin,Nippon Onomichi Ramen,Bowl,Japan,4.75
+Uni-President,Pickled Cabbage Beef,Pack,China,4.25
+Ottogi,Ppushu Ppushu Noodle Snack Honey Butter ,Pack,South Korea,2
+Maruchan,Gotsumori Chanpon Ramen,Bowl,Japan,4.5
+Prima,Juzz's Mee Creamy Chicken Flavour (Export Version),Pack,Singapore,5
+Uni-President,Mushroom Flavor,Pack,Vietnam,0
+Samyang Foods,Jjamppong Big Bowl,Bowl,South Korea,4.5
+Sokensha,Curry Udon,Pack,Japan,3.5
+Nissin,Straits Reborn Laksa,Pack,Singapore,5
+Nongshim,Budae Jjigae Noodle Soup,Pack,South Korea,4.5
+Takamori,Hearty Japanese Style Curry Udon,Pack,Japan,5
+Nissin,Cup Noodles Potato Chips Black Pepper Crab Flavour,Pack,Singapore,4.5
+Nissin,Cup Noodles Blacl Pepper Crab Flavour (More Angry Crab),Cup,Singapore,5
+Guava Story,Anchovy Flavor Guava Rice Noodles,Tray,South Korea,1
+Samurai Ramen,Umami Ramen,Pack,Japan,4
+Ikeda Shoku,Nabeyaki Tempura Udoin,Bowl,Japan,4.5
+Fujiwara,Hokkaido Hakodate Miso Ramen,Pack,Japan,3.5
+Uni-President,Man Han Feast Spicy Beef Flavor Instant Noodles,Bowl,Taiwan,5
+Ogasawara,Kirin Giraffe Shoyu Ramen,Pack,Japan,4.5
+Pringles,Nissin Top Ramen Chicken Flavor Potato Crisps ,Can,USA,3.5
+Mom's Dry Noodle,Dan Dan Noodle,Pack,Taiwan,5
+Samyang Foods,Samyang Ramen Classic Edition,Bowl,South Korea,5
+MyKuali,Penang Red Tom Yum Goong Noodle,Pack,Malaysia,5
+Maggi,Hot Heads Green Chilli Noodles,Pack,India,3.5
+Samyang Foods,Mala Buldak Bokkeummyun,Pack,South Korea,3.75
+Indomie,RMy Noodlez Rumput Laut,Pack,Indonesia,4
+KOKA,Delight Chicken Flavor Instant Non-Fried Noodles,Pack,Singapore,3.75
+Acecook,Super Cup Torigawa Shoyu,Bowl,Japan,3.5
+Nongshim,Shin Ramyun,Pack,South Korea,3
+Sichuan Guangyou,Sweet Potato Instant Noodle Sout-Hot Flavor,Bowl,China,0
+Indomie,Onion Chicken Flavor,Pack,Nigeria,1.5
+Happy Cook,Toona Paste Noodle,Pack,Taiwan,4
+The Ramen Rater Select,Supreme Creamy Tom Yum Noodle,Box,Malaysia,5
+KOKA,Creamy Soup With Crushed Noodles Chicken Flavor,Cup,Singapore,5
+Nissin,Demae Ramen Spicy Beef,Pack,Germany,3.75
+Nissin,Cup Noodles Spicy,Cup,Germany,3.75
+Nissin,Soba Thai,Pack,Germany,4.5
+Nissin,Cup Noodles Huhn (Chicken),Cup,Germany,3.75
+Nissin,Demae Ramen Korean Kimchi,Pack,Germany,3.5
+Nissin,Cup Noodles Curry,Cup,Germany,3.75
+Nissin,Smack Chili,Pack,Hungary,3.75
+Nissin,Soba Yakitori Chicken,Cup,Germany,5
+Nissin,Demae Ramen Garlic Chicken,Pack,Germany,3.5
+Nissin,Cup Noodles Ente (Duck),Cup,Germany,3
+Nissin,Demae Ramen Thai Tom Yum,Pack,Germany,3.75
+Nissin,Soba Sukiyaki Beef,Cup,Germany,4.5
+Nissin,Demae Ramen Spicy,Pack,Germany,3.5
+Nissin,Cup Noodles Shrimps,Cup,Germany,3
+Nissin,Demae Ramen Tokyo Soy Sauce,Pack,Germany,4
+Paldo,Bul Jjamppong,Bowl,South Korea,5
+TTL,Chicken With Chinese Shaoxing Wine,Pack,Taiwan,4.75
+Samyang Foods,Buldak Bokkeummyun,Cup,South Korea,3.75
+Acecook,Pork Wantan Men,Bowl,Japan,4.25
+E-Zee,Instant Noodles Chicken Flavour,Pack,Malaysia,4
+Kiki Noodle,Scallion Oil & Soy Sauce Noodle,Pack,Taiwan,5
+Kiki Noodle,Sichuan Spices Flavor Noodle,Pack,Taiwan,5
+Samyang Foods,Kimchi Stew Ramyun,Bowl,South Korea,4
+Maruchan,Seimen Red Spicy Dandan Men,Bowl,Japan,4.75
+Ottogi,Ppushu Ppushu Noodle Snack Chilli Cheese Flavor,Pack,South Korea,4.25
+Tokyo Noodle,Mini Instant Noodle Mild Curry Flavor,Pack,Japan,2
+GGE,Noodle Snack Wheat Cracks Seaweed Flavor,Pack,Taiwan,3.5
+Nissin,Cup Noodles Mini Seafood Flavour,Cup,Hong Kong,5
+Myojo,Udon Japanese Style Noodles With Soup Base Hot & Sour Flavor,Pack,USA,3.75
+KOKA,Signature Curry Flavor Instant Noodles,Cup,Singapore,3.5
+Acecook,Dossari Yasai Chanpon,Cup,Japan,4.25
+Paldo,Volcano Curry Kkokkomyun,Pack,South Korea,3.5
+Sau Tao,Instant Noodle King Pepper Duck Flavour Soup,Pack,Hong Kong,4
+Nissin,Cup Noodles XO Sauce Seafood,Cup,China,3.75
+Wang,Extreme Spicy Hot Chicken Flavor Udon,Bowl,South Korea,2
+Nissin,Gekikara Ramen Rasa Pedas,Pack,Indonesia,3.25
+TTL,Sesame Oil Chicken Noodle With Rice Wine,Bowl,Taiwan,5
+Fujiwara,Hokkaido Hakodate Shio Ramen,Pack,Japan,4.5
+Daifuku,Katsuo Bowl Udon,Bowl,USA,5
+Nissin,Cup Noodles MUG Shoyu & Seafood,Pack,Japan,3.5
+KOKA,Instant Noodles Chicken Satay Flavour,Pack,Singapore,3.5
+KOKA,Signature Spicy Singapore Fried Noodles Instant Noodles,Pack,Singapore,4.25
+KOKA,Creamy Soup With Crushed Noodles Sweet Corn Flavor,Cup,Singapore,5
+KOKA,Silk Beef Pho Flavor Instant Rice Fettuccine,Bowl,Singapore,3.25
+KOKA,Delight Spicy Sesame Flavor Instant Non-Fried Noodles,Pack,Singapore,4.5
+KOKA,Signature Laksa Singapura Instant Noodles,Bowl,Singapore,5
+KOKA,Delight Spicy Black Pepper Flavor Instant Non-Fried Noodles,Pack,Singapore,5
+KOKA,Purple Wheat Noodles Chili & Lime Flavor,Pack,Singapore,4
+KOKA,Delight Tomato Flavor Instant Non-Fried Noodles,Pack,Singapore,5
+KOKA,Seafood Flavor Instant Noodles,Cup,Singapore,3.5
+KOKA,Signature Stir-Fry Original Flavor Instant Noodles,Pack,Singapore,3
+KOKA,Creamy Soup Witrh Crushed Noodles Curry Flavor,Cup,Singapore,5
+KOKA,Delight Laksa Singapura Flavor Instant Non-Fried Noodles,Pack,Singapore,4.25
+KOKA,Silk Spicy Marinara Instant Rice Fettuccine,Bowl,Singapore,5
+KOKA,Signature Chicken Flavor Instant Noodles,Cup,Singapore,3.75
+Nissin,Cup Noodles Sopa Nissin Hot Sauce Con Camaron,Cup,Mexico,3.5
+MyKuali,Penang Hokkien Prawn Flavor Noodle,Box,Japan,5
+Master Kong,Roasted Pork Noodle,Pack,China,4.5
+Uni-President,Man Han Feast Super Hot Pot Beef Flavor Instant Noodles,Bowl,Taiwan,5
+World O' Noodle,Mi Goreng Original Flavour Fried Noodles,Pack,Indonesia,5
+Nissin,Raoh Nojyuku Toro Tonkotsu Ramen,Bowl,Japan,4.5
+Kang Shi Fu,Artificial Dongpo's Braised Pork Flavour,Pack,Hong Kong,4.75
+Mum Ngon,Lau Tom Chua Cay,Pack,Vietnam,3.5
+Happy Cook,Old Beijing Fried Bean Sauce Noodle,Pack,Taiwan,4.25
+Nissin,Cup Noodles Indonesia Mie Goreng,Cup,Japan,3.75
+Fashion Food,Yummy Spicy Rice Soup With Seafood,Bowl,Thailand,3.5
+Dream Kitchen,Udon Japanese Style Fresh Noodle,Bowl,USA,3.75
+MyKuali,MeeKuali Bihun Sup Rempah Perisa Daging,Pack,Malaysia,5
+New Touch,T's Restaurant Sura Tanmen,Cup,Japan,4
+TTL,Sesame Oil Chicken With Rice Wine Noodle,Bowl,Taiwan,5
+Ajinatori,HALAL Chicken Shoyu Sauce Ramen,Pack,Japan,2.5
+Dr. McDougall's,Vegan Pad Thai Noodle Soup,Cup,USA,0
+Nissin,Seafood Flavour Rice Vermicelli,Cup,Hong Kong,5
+Samyang Foods,Cheese Type Buldak Bokkeummyun (Black Pkg),Pack,South Korea,3.75
+Ve Wong,Kung-Fu Instant Oriental Noodles Soup Artificial Onion Flavor,Pack,Taiwan,3.5
+Nissin,Cup Noodles Sopa Nissin Con Camaron Picante,Cup,Mexico,3.25
+Uni-President,Baseball Snack Noodle,Pack,Taiwan,5
+Nissin,Cup Noodles Spicy Seafood Flavor,Cup,China,3.75
+MyKuali,Penang Red Tom Yum Goong,Box,Japan,5
+Myojo,Yomise No Yakisoba Karashi Mentaiko Flavor,Tray,Japan,4.5
+Super Bihun,Bihun Kuah Rasa Baso Sapi,Pack,Indonesia,3.75
+Xiuhe,Hot & Sour Beef Noodles,Bowl,China,4.25
+Nissin,Kitsune Udon Donbei (West),Bowl,Japan,5
+Little Cook,Thailand Green Curry Instant Noodle,Bowl,Taiwan,5
+Nissin,Cup Noodles Beef Flavour,Cup,Hong Kong,2.5
+Shirakiku,Sanukiya Udon Shrimp Flavor,Pack,USA,3.25
+Mama Pat's,Chicken Fajita Flavor Instant Ramen Noodles,Pack,USA,3.75
+Mama Pat's,Lamb Stew Flavor Instant Ramen Noodles,Pack,USA,3.75
+Mama Pat's,Seafood Gumbo Flavor Instant Ramen Noodles,Pack,USA,3.5
+Mama Pat's,Chicken Taco Flavor Instant Ramen Noodles,Pack,USA,3.75
+Just Way,Chuan Wei Spicy Guan-miao Noodles,Pack,Taiwan,4.5
+Sichuan Guangyou,Sweet Potato Instant Noodle Braised Spicy Chitterling Flavor,Pack,China,0.25
+Nissin,Cup Noodles Mini Spicy Seafood,Cup,Hong Kong,4
+MyKuali,Penang Hokkien Prawn Noodle Soup,Pack,Singapore,5
+Goku-Uma,Yakisoba Japanese Style Noodle,Bowl,USA,4.75
+Maggi,Nutri-licious Pazzta Tomato Twist,Pack,India,3.75
+Sichuan Baijia,Chongqing Noodles Burning Dry Noodles,Bowl,China,5
+Nissin,Cup Noodles Tom Yam Seafood Flavour,Cup,Singapore,5
+Indomie,My Noodles Mi Goreng Pizza Cheese,Pack,Indonesia,4
+Liang Cheng Mai,Shaanxi Cold Noodle: Mustard Spicy,Tray,China,1
+Samyang Foods,Cheese Buldak Bokkeummyun (Black),Bowl,South Korea,4
+Maggi,2 Minute Noodles Chicken Flavour,Pack,Fiji,3.25
+Master Kong,Chicken Flavor Instant Noolde,Pack,China,4.25
+Nissin,Cup Noodles Prawn Flavour,Cup,Hong Kong,3.75
+Ripe'n'Dry,Hokkaido Miso Ramen,Pack,Japan,3
+MyKuali,Penang Red Tom Yum Goong Rice Vermicelli Soup,Bowl,Malaysia,5
+Ottogi,Jin Jjambbong Spicy Seafood Ramyun,Pack,South Korea,5
+Nissin,Rice Vermicelli Pickled Vegetable Pork Flavour,Cup,Hong Kong,3.75
+Gefen,Imitation Chicken Flavor,Cup,USA,4
+Hua Feng,Three Fresh Delicacies Instant Noodle,Pack,China,4.25
+Nissin,Demae Iccho Sesame Oil Flavour Instant Noodle,Bowl,Hong Kong,3.5
+Maggi,2 Minute Noodles Curry Flavour,Pack,Fiji,4
+Uni-President,Man Han Feast Chilli Beef Flavor Instant Noodles,Bowl,Taiwan,4.75
+Sichuan Guangyou,9999 Chongqing Artificial Beef Flavor Instant Noodle,Pack,China,4.25
+Nissin,Cup Noodles Beef Flavor Ramen Noodle Soup (New Recipe),Cup,USA,3.5
+Nongshim,Seaweed Instant Noodle,Cup,South Korea,0.5
+Nissin,Demae Iccho Seafood Flavour Instant Noodle,Cup,Hong Kong,4.75
+Pulmuone,Non-Fried Ramyun With Spicy Beef Broth,Pack,South Korea,3.75
+Nissin,Cup Noodles Hot & Spicy Shrimp Flavor Ramen Noodle Soup (New Recipe),Cup,USA,2.5
+Sau Tao,Non-Fried Mix Noodle Black Pepper XO Sauce Flavoured,Pack,Hong Kong,4.5
+MyKuali,Penang White Curry Instant Noodle (Japan Version),Box,Malaysia,5
+Nissin,Disney Cuties Instant Chicken With Corn Flavour,Cup,Thailand,3.25
+Uni-President,Man Han Feast Braised Pork Flavor Instant Noodles,Bowl,Taiwan,5
+World O' Noodle,Mi Goreng Garlic Flavour Fried Noodles,Pack,Indonesia,4.5
+Nissin,Top Ramen Atta Nooldes Masala,Pack,India,4.5
+Liu Quan,Instant Spicy Rice Noodle,Bowl,China,4
+Daikoku,Tanuki Soba,Cup,Japan,3.5
+Samyang Foods,Zzaldduck Buldak Bokkeummyun Snack,Pack,South Korea,4.5
+Samyang Foods,Curry Buldak Bokkeummyun,Pack,South Korea,4.25
+Samyang Foods,Cool/Ice Buldak Bokkeummyun,Pack,South Korea,3.75
+Samyang Foods,2x Spicy Haek Buldak Bokkeummyun,Pack,South Korea,4
+Samyang Foods,Buldak Bokkeummyun Snack,Pack,South Korea,5
+Samyang Foods,Stew Buldak Bokkeumtangmyun,Pack,South Korea,5
+Samyang Foods,Cheese Buldak Bokkeummyun,Pack,South Korea,4
+Samyang Foods,Buldak Bokkeummyun (New Packaging),Pack,South Korea,4
+Chuan Wei Wang,Bowl Instant Noodles Artificial Spicy Beef Flavor,Bowl,China,4
+Nissin,Demae Iccho Chicken Flavour Instant Noodle (Bowl Noodle),Bowl,Hong Kong,5
+Wai Wai,Instant Noodles Artificial Chicken Flavoured,Pack,India,2
+Daikoku,Kitsune Udon,Cup,Japan,2
+Sichuan Baijia,Pickled Cabbage Flavor Instant Vermicelli,Bowl,China,4
+Kamfen,Noodle King Artificial Wonton Soup Flavored,Bowl,Hong Kong,5
+Nongshim,Spicy Shrimp Cup Noodle,Cup,South Korea,4
+Marutai,Nagasaki Agodashi Shoyu Ramen,Pack,Japan,4
+Vifon,Viet Cuisine Bun Rieu Cua Sour Crab Soup Instant Rice Vermicelli,Bowl,Vietnam,5
+Nissin,"Cup Noodles Rich Garlic, Egg Yolk & Oxtail",Cup,Japan,4
+Uni-President,Minced Pork Flavor Instant Noodles,Pack,Taiwan,1
+1 To 3 Noodles,Chatpat Masala,Pack,India,4
+Nissin,Cup Noodles BIG XO Sauce Seafood Flavour,Cup,Hong Kong,4
+Fantastic,Noodles Chicken & Corn Flavour,Cup,Australia,3
+Ripe'n'Dry,Hokkaido Salt Ramen,Pack,Japan,3
+Nissin,Demae Iccho Tonkotsu Flavour Instant Noodle (Bowl Noodle),Bowl,Hong Kong,3
+Knorr,Chatt Patta Instant Noodles,Pack,Pakistan,1
+Sempio,Clam Flavor Soup Kal-guksu,Pack,South Korea,5
+Nissin,Cup Noodles Sopa Nissin Sabor A Pollo,Cup,Mexico,4
+Nissin,Maxi Sopa Nissin Cuchareable Sabor A Jugo De Carne,Cup,Mexico,4
+Nissin,Sopa Nissin Sabor A Camaron Sopa Instantanea Tipo Ramen,Pack,Mexico,4
+Nissin,Cup Noodles Sopa Nissin Sabor A Carne De Res,Cup,Mexico,4
+Nissin,RapiFideo Sabor A Tomate Y Pollo,Cup,Mexico,4
+Nissin,"Cup Noodles Sopa Nissin Sabor Camaron, Habanero Y Limon",Cup,Mexico,3
+Nissin,Sopa Nissin Sabor A Pollo Sopa Instantanea Tipo Ramen,Pack,Mexico,4
+Nissin,Cup Noodles Sopa Nissin Con Camaron,Cup,Mexico,3
+Nissin,Maxi Sopa Nissin Cuchareable Sabor A Camaron Picante,Cup,Mexico,3
+Nissin,Cup Noodles Gourmet Sabor A Caldo De Camaron,Cup,Mexico,5
+Nissin,"Sopa Nissin Sabor Mariscos, Habanero Y Limon",Cup,Mexico,4
+Nissin,Maxi Sopa Nissin Cuchareable Sabor A Pollo,Cup,Mexico,4
+Nissin,Sopa Nissin Sabor A Res Instantanea Tipo Ramen,Pack,Mexico,4
+Nissin,Cup Noodles Sopa Nissin Hot Sauce Sabor A Pollo,Cup,Mexico,4
+Ve Wong,Little Prince(ss) Brand Snack Noodles Artificial Mexican Pizza Flavor,Pack,Taiwan,4
+Patanjali,Atta Noodles Jhatpat Banao Befikr Khao,Pack,India,5
+Qin Zong,Shaanxi Cold Noot Hot & Sour Flavor,Pack,China,3
+Nissin,Cup Noodles Spicy Lime Flavor Ramen Noodle Soup (New Recipe),Cup,USA,4
+Nissin,Demae Iccho Tokyo Shoru Tonkotsu Instant Noodle,Cup,Hong Kong,4
+Pran,Mr. Noodles Curry Flavor Instant Noodles,Pack,Bangladesh,4
+Paldo,Bul Jjajangmyeon,Pack,South Korea,5
+Ogasawara,Kirin Giraffe Shio Ramen,Pack,Japan,5
+Sapporo Ichiban,Mie Kamayama Ramen Gyukotsu Misoaji,Bowl,Japan,3
+Sau Tao,Black Pepper XO Sauce Flavour,Bowl,Hong Kong,5
+Nissin,Nupasta Bolognese Flavour Instant Noodle,Cup,Japan,4
+Nongshim,Saeutang Sabalmyeon,Bowl,South Korea,3.5
+Happy Cook,Sichuan Spicy Flavor,Pack,Taiwan,5
+MAMA,Instant Bowl Noodles Shrimp (Tom Yum) Flavor Base,Bowl,Thailand,4
+Nissin,Cup Noodle Spicy Curry Chicken,Cup,Japan,5
+Goku-Uma,Ramen Noodles Miso Flavor,Bowl,USA,3
+Nissin,Cup Noodles Spicy Beef Flavour,Cup,Hong Kong,4
+Xiao Ban Mian,Sesame Oil With Garlic Flavor Thin Noodle,Pack,Taiwan,3.5
+Xiao Ban Mian,Traditional Shallot & Onion Oil Noodle,Pack,Taiwan,5
+Xiao Ban Mian,Sesame Sauce Matcha Noodle,Pack,Taiwan,3.8
+Pran,Mr. Noodles Instant Noodles Beef Flavour,Pack,Bangladesh,4
+Nissin,Cup Noodles Big Seafood Flavour,Cup,Hong Kong,4
+Fantastic,Noodles Chicken Chow Mein Flavour,Cup,Australia,4
+Ottogi,Ramyun Sabor Pollo,Pack,Mexico,4
+Nissin,Demae Iccho Black Garlic Oil Tonkotsu Flavour Instant Noodles,Cup,Hong Kong,4
+Ajinatori,Chicken Flavor Ramen,Pack,Japan,4
+Maggi,2 Minute Noodles Masala Spicy,Pack,India,5
+Maruchan,Sopa Maruchan Sobar A Camaron,Pack,Mexico,3
+Nissin,Yakisoba,Tray,Japan,5
+Suimin,Noodle With Oriental Chicken Flavour,Cup,Australia,3
+Nissin,Demae Ramen Spicy Xo Sauce Seafood Flavour Instant Noodle,Pack,Hong Kong,4
+Cintan,Mi Segera Mmm... Original,Pack,Malaysia,3
+Nissin,Cup Noodles Spicy Chile Chicken (New Recipe),Cup,USA,4
+Chuan Wei Wang,Bowl Instant Noodles Artificial Beef With Sauerkraut Flavor,Bowl,China,3
+Suimin,Noodles With Chicken Flavour,Cup,Australia,3
+Nissin,Cup Noodles Seafood,Cup,China,4
+Sapporo Ichiban,Tabimen AizuKitakata Gyokai Shoyu Ramen,Bowl,Japan,4
+Nissin,Nupasta Bacon In Carbonara Sauce Flavour Instant Noodle,Pack,Hong Kong,5
+Sichuan Baijia,Chongqing Noodles Spicy Hot Flavor,Pack,China,5
+Samyang Foods,Buldak Bokkummyun Cheese Flavor,Pack,South Korea,4
+Nissin,Demae Ramen Straight Noodle Black Garlic Oil Tonkotsu Flavour Instant Noodle,Pack,Hong Kong,5
+Myojo,Shin Toyama Black Ramen,Bowl,Japan,4
+Nissin,Cup Noodles Tom Yum Goong Flavour,Cup,Hong Kong,4
+Master Kong,Artificial Abalone Crab Flavor Instant Noodle,Pack,China,0
+Kamfen,Noodle King Artificial Abalone And Chicken Soup Flavored,Bowl,Hong Kong,4
+Fantastic,Noodles Beef Flavour,Cup,Australia,3
+Nissin,Korean Kimchi Flavour Vermicelli,Cup,Hong Kong,4
+Nissin,Raoh Pork Bone Soy Soup Noodle,Pack,Japan,5
+Samyang Foods,Gold Jjamppong Fried Noodle,Pack,South Korea,5
+Nissin,Demae Iccho Red Hot Seafood Flavour Instant Noodle,Cup,Hong Kong,4
+Sichuan Baijia,Chongqing Noodles Hot & Sour Flavor,Pack,China,4
+Nissin,Demae Iccho Spicy Tonkotsu Flavour Instant Noodle (Bowl Noodle),Bowl,Hong Kong,5
+Nissin,Raoh Tantanmen,Pack,Japan,5
+Goku-Uma,Ramen Noodles Soy Sauce Flavor,Bowl,USA,3
+Nissin,Cup Noodles With Shrimp Ramen Noodle Soup (New Recipe),Cup,USA,3
+JML,Hot & Sour Beef Noodles,Pack,China,4
+Suimin,Noodles With Braised Beef Flavour,Cup,Australia,4
+Uni-President,A Q Bucket Noodle Korean Kimchi Flavor,Bowl,Taiwan,4
+Nissin,Demae Iccho Spicy Kimchi Pot Flavour Instant Noodle (Bowl Noodle),Bowl,Hong Kong,4
+Sichuan Baijia,Chongqing Noodles Burning Dry Noodles,Pack,China,5
+Samyang Foods,Fresh Bibimmyun Fried Noodle,Pack,South Korea,4
+Wai Wai,Instant Noodles Veg Masala Flavour,Pack,India,4
+Nissin,Nupasta Neapolitan Flavour Instant Noodle,Pack,Hong Kong,5
+Shirakiku,Karami Ramen Spicy Chili Flavour Japanese Style Noodle With Soup Base,Pack,USA,2
+Nissin,Disney Cuties Instant Noodle Crab Flavour,Cup,Thailand,4
+Nissin,Cup Noodles Rich Soft Shelled Turle Soup,Cup,Japan,3
+Unif Tung-I,Instant Vegetarian Beehoon Rice Vermicelli,Pack,Taiwan,1
+Sichuan Baijia,Broad Noodle Artificial Beef Flavor Hot Pot,Pack,China,4
+Dream Kitchen,Curry Flavour Instant Noodles,Cup,USA,5
+Tablemark,Tohokuno Aji Yonezawa Ramen,Bowl,Japan,4
+Uni-President,Science Noodle (X'Mas Edition),Pack,Taiwan,5
+Farmer's Heart,Pho Beef Flavor Vietnamese Rice Noodle Soup,Bowl,USA,3.75
+Kamfen,Instant Wonton Noodles Scallop Lobster Soup Flavour,Bowl,Hong Kong,4.3
+Fuku,Tom Yam Soup Instant Noodle,Pack,Hong Kong,2.3
+Goku-Uma,Ramen Noodles Artificially Flavored Tonkotsu,Bowl,USA,3
+Daikoku,Hiroshima Flavor Yakisoba,Tray,Japan,5
+Nissin,Disney Cuties Instant Noodle Seaweed Flavour,Cup,Thailand,3
+Singa-Me,Instant Noodles Mi Goreng Flavour,Cup,Australia,4
+New Touch,Sugomen Sano Ramen,Bowl,Japan,5
+Ottogi,Ramyon Sabor Y Camaron,Pack,Mexico,4
+Nissin,Demae Iccho Spicy XO Sauce Seafood Flavour,Pack,Hong Kong,4
+Love Cook,Sun Dried Noodle - Fruity Soy Bean Paste,Pack,Taiwan,4
+Nongshim,Shin Noodle Soup,Cup,USA,5
+Nissin,Sapporo Noukou Miso Ramen,Bowl,Japan,5
+Dream Kitchen,Soy Sauce,Cup,USA,4
+Nissin,Vietnamese Chicken Coriander Flavour Vermicelli,Cup,Hong Kong,4
+Kang Shi Fu,Artificial Spicy Beef Flavour,Pack,Hong Kong,4
+Nissin,Cup Noodles Black Pepper Crab Flavour,Cup,Hong Kong,4
+Great Value,Beef Style Noodles With Vegetables,Cup,Canada,3
+Fuku,Spicy Soup Instant Noodle Beef Flavour,Pack,Hong Kong,4
+Wang,Rice Noodle Anchovy Flavor,Bowl,South Korea,3
+Nissin,Cup Noodles Chicken Flavor Ramen Noodle Soup (New Recipe),Cup,USA,4
+Asian Thai Foods,Rumpum Gundruk Flavour,Pack,Nepal,1
+Nissin,Cup Noodle Light+ Bagna Cauda,Cup,Japan,5
+Maruchan,Gotsumori Koku Tonkotsu Ramen,Bowl,Japan,4
+Fashion Food,Tom Yum Shrimp Creamy Flavour Instant Noodles,Bowl,Thailand,4
+Paldo,Bibim Men,Bowl,South Korea,5
+Nissin,Cup Noodles Milk Seafood Flavour,Cup,Hong Kong,4
+Nissin,Spicy Chikin Donburi,Bowl,Japan,5
+Fantastic,Noodle Chicken Flavour,Cup,Australia,4
+Marutai,Kuroma-Yu Tonkotsu Kumamoto Ramen,Pack,Japan,4
+Kang Shi Fu,Artificial Beef With Sauerkraut Flavour,Pack,Hong Kong,4
+Nissin,Raoh Shoyu Ramen,Bowl,Japan,5
+Maruchan,Ramen Noodle Soup Sriracha Chicken Flavor,Pack,USA,4
+Nagatanien,Hiyashi Soba Taidashi Goma,Pack,Japan,3
+Fuku,Bowl Chicken Flavour Instant Rice Vermicelli,Bowl,Hong Kong,4
+Wai Wai,X-Press Flavour Of Pizza In Noodles Proprietary Food,Pack,India,4
+KOKA,Rice Noodles Fragrant Chicken Pho Ga Flavour,Pack,Singapore,4
+Nyor Nyar,Vegetarian Penang White Curry,Pack,Malaysia,5
+Nissin,Cup Noodle Seafood,Cup,Japan,5
+Paldo,Budae Jjigae,Pack,South Korea,5
+Fantastic,Noodles Crispy Bacon Flavour,Cup,Australia,1
+Tseng Noodles,Spicy Braised Pork Flavor,Pack,Taiwan,4
+Nissin,Demae Ramen Spicy Seafood Flavour Instant Noodle,Pack,Hong Kong,5
+A-Sha Dry Noodle,Chow Mein Spicy Flavor,Tray,Taiwan,3
+Myojo,Mee Goreng Spicy Flavour,Pack,Singapore,5
+Sapporo Ichiban,Tabimen Nagasaki Chanpon,Bowl,Japan,4
+Acecook,Oh! Ricey Pork Flavour,Pack,Vietnam,4
+Paldo,Bul Jjamppong,Pack,South Korea,4
+Nissin,Disney Cuties Instant Noodle Roast Pork Flavour,Cup,Thailand,3
+Morre,Instant Noodles Masala,Pack,Pakistan,4
+Nissin,Demae Ramen Spicy Hot tonkotsu Flavour Instant Noodle,Pack,Hong Kong,5
+Roland,Ramen Japanese Style Quick-Cooking Alimentary Paste With Chicken Artificially Flavored Soup Base,Pack,USA,0
+Nissin,Big Cup Noodles Tonkotsu Flavour,Cup,Hong Kong,3
+Nissin,Deka Buto Kuro M-yu Tonkotsu,Bowl,Japan,5
+Maruchan,Bowl Taste Of Asia Hearty Pork Flavor Tonkotsu Ramen,Bowl,USA,4
+Nissin,Cup Noodles Sabor Galinha Caipira,Cup,Brazil,4
+Nongshim,Bowl Noodle Soup Independence Day Limited Edition Spicy Chicken Flavor,Bowl,USA,4
+Nissin,Nupasta Vongole Flavour Instant Noodle,Cup,Hong Kong,4
+Mr. Lee's Noodles,Penang Chicken Curry Laksa,Cup,UK,2
+Mr. Lee's Noodles,Shaolin Monk Vegetables,Cup,UK,5
+Mr. Lee's Noodles,Tai Chi Chicken,Cup,UK,3
+Mr. Lee's Noodles,Dragon Fire Mushroom,Cup,UK,3
+Mr. Lee's Noodles,Hong Kong Street Beef,Cup,UK,5
+Mr. Lee's Noodles,Warrior Fighting Shrimp,Cup,UK,3.3
+Nissin,Gyorai Inaniwa Chuka Soba,Bowl,Japan,5
+Fuku,Chicken Flavour Instant Noodle,Pack,Hong Kong,4
+Knorr,Chicken Flavored Instant Noodles,Pack,Pakistan,3
+Nyor Nyar,Penang White Curry Instant Noodle,Pack,Malaysia,5
+Choumama,XO Scallops Sauce Dry Noodles,Pack,Taiwan,4
+Myojo,Barikata Noukou Tonkotsu Shoyu,Bowl,Japan,4.75
+Nissin,Demae Ramen Sesame Oil Flavour Cup,Cup,Hong Kong,4
+Singa-Me,Instant Noodles Chicken Flavour,Cup,Australia,2.5
+Pulmuone,Non-Fried Ramyun Noodle (Crab Flavor),Pack,South Korea,5
+Master Kong,Assorted Seafood Noodles,Pack,China,4
+Nissin,Raoh Hot & Sour Ramen,Pack,Japan,5
+President Rice,Coriander Instant Rice Noodles,Bowl,Thailand,2.75
+MAMA,Instant Rice Noodles Moo Nam Tok Flavour,Pack,Thailand,3.5
+MAMA,Instant Rice Vermicelli Clear Soup,Pack,Thailand,3.5
+MAMA,Instant Rice Noodles Chicken Flavour,Pack,Thailand,4
+MAMA,Pho Ga Rice Noodles With Artificial Chicken Flavour,Bowl,Thailand,3
+MAMA,Oriental Kitchen Instant Rice Vermicelli In Gravy,Pack,Thailand,5
+MAMA,Instant Tom Yam Rice Noodles,Pack,Thailand,4
+MAMA,Instant Rice Noodles Vegetable Flavour,Pack,Thailand,4
+MAMA,Instant Rice Vermicelli Yentafo Tom Yam Mohfai,Pack,Thailand,5
+MAMA,Instant Flat Noodles Clear Soup,Pack,Thailand,4
+MAMA,Cup Rice Noodles Tom Saab Flavour,Cup,Thailand,5
+MAMA,Instant Rice Noodles Stew Beef Flavour,Pack,Thailand,4
+MAMA,Instant Rice Noodles Phnom Penh Style,Pack,Thailand,4
+MAMA,Instant Flat Noodles Tom Yam Flavour,Pack,Thailand,4
+Maruchan,Ramen Noodle soup Mushroom Flavor,Pack,USA,4
+Happy Family,Vegetable Flavour Instant Noodles,Pack,Singapore,4
+Tseng Noodles,Rice Noodle Shallot With Braised Pork Flavor,Pack,Taiwan,5
+Great Value,Vegetable Flavour Noodles With Vegetables,Cup,Canada,3
+JML,Instant Noodle Artificial Beef Flavor 7 sour Pickled Cabbage,Pack,China,4
+Suimin,Noodles With Hot & Spicy Flavour,Cup,Australia,3
+Tseng Noodles,Rice Noodle Chinese Mushroom With Soybean Vegetarian Braised Pork Flavor,Pack,Taiwan,5
+Nissin,Piritto Karakuchi Tantan Udon,Bowl,Japan,4
+Tseng Noodles,Rice Noodle Seafood Laksa Flavour,Pack,Taiwan,5
+Nongshim,Chal Bibim Myun,Pack,South Korea,5
+Menraku,Japanese Yakisoba Umami Sauce,Bowl,Japan,5
+La Moderna,Sazon Casero Sopa Con Tomate Y Sabor Pollo,Pack,Mexico,3
+A-Sha Dry Noodle,Chow Mein Original Flavor,Tray,Taiwan,5
+Master Kong,Artificial Mushroom Chicken Flavor Instant Noodle,Pack,China,4
+A-Sha Dry Noodle,Chow Mein Oyster Sauce BBQ Flavor,Tray,Taiwan,2
+Nongshim,Soon Veggie Noodle Soup,Cup,USA,5
+MyKuali,Penang Hokkien Prawn Noodle,Pack,Malaysia,5
+Maruchan,Instant Lunch Jalapeno Cheddar Flavor Ramen Noodles,Cup,USA,3.5
+Nongshim,Harmony Korean Spicy Noodle Dish With Chipotle,Pack,USA,4.25
+Maggi,2 Minute Noodles Tom Yam Flavour,Pack,Singapore,3.5
+Nissin,Souper Meal Chili Picante Chicken With Lime Flavor Ramen Noodle Soup,Bowl,USA,3.5
+Nongshim,Shin Ramyun Noodle Soup (New Edition),Pack,USA,4.25
+Nongshim,Noodle Soup Seasoned With Real Kimchi,Pack,USA,4.75
+Nissin,Top Ramen Chicken Flavor Ramen Noodle Soup (New Packaging),Pack,USA,3.5
+Nongshim,Jinjja Jinjja Flamin' Hot & Nutty,Pack,USA,5
+Nissin,Raoh Ramen Noodle Soup Umami Soy Sauce Flavor,Pack,USA,4.75
+Nissin,Raoh Ramen Noodle Soup Umami Tonkotsu Flavor,Pack,USA,5
+Nongshim,Soon Veggie Noodle Soup,Pack,South Korea,5
+Nissin,Raoh Ramen Noodle Soup Umami Miso Flavor,Pack,USA,4.5
+Nongshim,Shin Ramyun Noodle Spicy Mushroom,Bowl,China,3.25
+Nongshim,Korean Clay Pot Ramyun,Bowl,China,2.5
+Nongshim,Shin Black Spicy Po-Au-Feu Flavor (Mew Edition),Pack,USA,5
+Sapporo Ichiban,Tonkotsu Ramen Artificially Flavored Tonkotsu White Chicken Broth,Pack,USA,5
+Nongshim,Jinjja Jinjja,Pack,South Korea,5
+Nongshim,Quick2 Hot & Spicy Noodle Soup With Habanero & Lime,Pack,USA,4
+Nongshim,Spicy Tonkotsu Noodle Soup,Pack,USA,5
+Nongshim,Shin Black Spicy Pot-au-feu Flavor Premium Noodle Soup,Cup,USA,5
+Nongshim,Noodle Soup Seasoned With Real Kimchi,Pack,USA,4.75
+Prima Taste,Singapore Prawn Soup La Mian,Pack,Singapore,5
+Prima Taste,Singapore Fish Soup La Mian,Pack,Singapore,5
+Prima Taste,Singapore Laksa Wholegrain La Mian,Pack,Singapore,5
+Prima Taste,Singapore Curry Wholegrain La Mian,Pack,Singapore,5
+Prima Taste,Singapore Chilli Crab La Mian,Pack,Singapore,5
+Prima Taste,Singapore Laksa La Mian,Pack,Singapore,5
+Prima Taste,Singapore Curry La Mian,Pack,Singapore,5
+Indomie,Mi Goreng,Pack,Indonesia,5
+Indomie,Mi Goreng Pedas Hot,Pack,Indonesia,4.5
+Indomie,Mi Goreng Sate,Pack,Indonesia,5
+Indomie,Special Fried Curly Noodle,Pack,Indonesia,5
+Indomie,Curly Noodles With Grilled Chicken,Pack,Indonesia,5
+Indomie,Mi Goreng Jumbo Barbecue Chicken,Pack,Indonesia,5
+Indomie,Mi Goreng Rendang (Import),Pack,Indonesia,5
+Indomie,Mi Goreng Sate (Local),Pack,Indonesia,5
+Indomie,Rasa Soto Banjar Limau Kulit,Pack,Indonesia,5
+Indomie,Rasa Mi Cakalang,Pack,Indonesia,4.5
+Indomie,Rasa Kari Ayam Medan,Pack,Indonesia,5
+Indomie,Mi Goreng Barbecue Chicken,Pack,Indonesia,5
+Indomie,Special Fried Curly Noodle (Local),Pack,Indonesia,5
+Indomie,Mi Goreng Rendang,Pack,Indonesia,4.5
+Indomie,Mi Goreng Jumbo Beef,Pack,Indonesia,5
+Indomie,Mi Goreng Instant Cup Noodles,Cup,Indonesia,5
+Indomie,Instant Cup Noodles Mi Goreng Fried Noodles,Cup,Indonesia,5
+Indomie,Chicken Curry,Pack,Indonesia,4
+Indomie,Mi Goreng Jumbo Beef,Pack,Indonesia,5
+Indomie,Rasa Coto Makassar,Pack,Indonesia,4
+Indomie,Special Chicken,Pack,Indonesia,4.25
+Indomie,ABC Mi Goreng Spesial Special Fried Noodle,Cup,Indonesia,4
+Indomie,Rasa Soto Betawi,Pack,Indonesia,4.5
+Nissin,Chikin Ramen,Pack,Japan,5
+Nissin,Cup Noodle,Cup,Japan,5
+Nissin,Raoh Tonkotsu,Pack,Japan,5
+Nissin,Raoh Shoyu Ramen,Bowl,Japan,5
+Nissin,Raoh Tantanmen,Pack,Japan,5
+Nissin,Raoh Hot & Sour Ramen,Pack,Japan,5
+Nissin,Raoh Rich Miso Flavor,Bowl,Japan,5
+Nissin,Raoh Rich Miso Flavor,Bowl,Japan,5
+Nissin,Men Shokunin Shoyu,Bowl,Japan,5
+Nissin,Men Shokunin Kaoruyasai Shio,Bowl,Japan,5
+Nissin,Kitsune Udon Donbei (West),Bowl,Japan,5
+Nissin,Spicy Chikin Donburi,Bowl,Japan,5
+Nissin,Sapporo Noukou Miso Ramen,Bowl,Japan,5
+Nissin,Cup Noodle Seafood,Cup,Japan,5
+Nissin,Yakisoba,Tray,Japan,5
+Nissin,UFO Yakisoba With Wasabi Mayonnaise,Bowl,Japan,5
+Nissin,Yakisoba,Pack,Japan,5
+Nissin,Cup Noodle Big Cheese Mexican Chilli,Cup,Japan,5
+Nissin,Emergency Chikin Ramen Cup Noodle,Cup,Japan,5
+Nissin,Gyoretsu-no-Dekiru-Mise-no-Ramen (Shrimp Tantanmen),Bowl,Japan,5
+Nissin,Chikin Ramen (Local),Pack,Japan,5
+Nissin,Yakisoba With Mayonnaise/Mustard Packet,Tray,Japan,5
+Nissin,Cup Noodle Light+ Bagna Cauda,Cup,Japan,5
+Nissin,Gozen Kitsune Udon,Bowl,Japan,5
+Nissin,Donbei Kamodashi Soba,Bowl,Japan,5
+Nissin,Cup Pasta Style Bolognese,Cup,Japan,5
+Sapporo Ichiban,Shio,Pack,Japan,5
+Sapporo Ichiban,Chow Mein,Pack,Japan,5
+Sapporo Ichiban,Sesame Ramen,Pack,Japan,5
+Sapporo Ichiban,Chow Mein (New),Pack,USA,5
+Sapporo Ichiban,Tonkotsu Ramen Artificially Flavored Tonkotsu White Chicken Broth,Pack,USA,5
+Maruchan,Seimen Houjyun Koku Shoyu,Bowl,Japan,5
+Maruchan,Gotsumori Sauce Yakisoba,Tray,Japan,5
+Maruchan,Ramen Noodle Soup Creamy Chicken,Pack,USA,5
+Nongshim,Champong Noodle Soup Spicy Seafood Flavor,Pack,South Korea,5
+Nongshim,Zha Wang ((Jjawang) Noodles With Chajang Sauce,Pack,South Korea,5
+Nongshim,Paldo Kokomen Spicy Chicken,Pack,South Korea,5
+Nongshim,Shin Ramyun Black,Pack,South Korea,4.75
+Nongshim,Nongshim Chal Bibim Myun,Pack,South Korea,5
+Nongshim,Doong Ji Authentic Korean Cold Noodles With Chili Sauce,Tray,South Korea,5
+MyKuali,Penang White Curry Rice Vermicelli Soup,Bowl,Malaysia,5
+MyKuali,Penang Red Tom Yum Goong Noodle,Pack,Malaysia,5
+MyKuali,Penang White Curry Instant Noodle (Japan Version),Box,Malaysia,5
+MyKuali,Penang Red Tom Yum Goong,Box,Japan,5
+MyKuali,Penang Hokkien Prawn Flavor Noodle,Box,Japan,5
+MyKuali,Penang Red Tom Yum Goong Rice Vermicelli Soup,Bowl,Malaysia,5
+MyKuali,MeeKuali Bihun Sup Rempah Perisa Daging,Pack,Malaysia,5
+MyKuali,Penang White Curry Noodle (New Version),Pack,Malaysia,5
+MyKuali,Penang Red tom Yum Goong Noodle Authentic Taste,Pack,Malaysia,5
+MyKuali,Penang Hokkien Prawn Noodle Soup,Pack,Singapore,5
+MyKuali,Penang Hokkien Prawn Noodle Authentic Taste,Cup,Malaysia,5
+MyKuali,Penang White Curry Authentic Taste Cup,Cup,Malaysia,4.75
+MyKuali,Penang Red Tom Yum Goong Noodle Authentic Taste,Cup,Malaysia,5
+MyKuali,Penang Spicy Prawn Soup Noodle,Pack,Malaysia,5
+MyKuali,Penang White curry Noodle Authentic Taste,Pack,Malaysia,5
+MyKuali,Penang Hokkien Prawn Noodle (New Improved Taste),Pack,Malaysia,5
+MyKuali,Penang White Curry Noodle (New Improved Tatse),Pack,Malaysia,5
+MyKuali,Penang Spicy Prawn Soup Noodle Authentic Taste,Pack,Malaysia,5
+MyKuali,Penang Red tom Yum Goong Noodle (New Version),Pack,Malaysia,5
+MyKuali,Penang White Curry Noodle,Pack,Malaysia,5
+Paldo,Bul Jjamppong,Bowl,South Korea,5
+Paldo,Paegaejang Ramen,Pack,South Korea,5
+Paldo,Bul Jjajangmyeon,Pack,South Korea,5
+Paldo,Bibim Men,Bowl,South Korea,5
+Paldo,Budae Jjigae,Pack,South Korea,5
+Paldo,Paldo Namja,Pack,South Korea,5
+Paldo,Kokomen Spicy Chicken,Pack,South Korea,5
+Paldo,Raobokki Noodle (Export Version),Pack,South Korea,5
+Paldo,Paldo King Bowl Super Spicy Pan Stirfried Noodle,Bowl,South Korea,5
+Paldo,Jong-Gah-Jip Kimchi Ramen premium,Pack,South Korea,5
+Paldo,Cheese Ramyun (for US market),Pack,South Korea,5
+Paldo,Jjajangmen Chajang Noodle King Bowl,Bowl,South Korea,5
+Paldo,Jjamppong Seafood Noodle King Bowl,Bowl,South Korea,5
+Paldo,Cheese Noodle,Pack,South Korea,5
+Paldo,Paldo Bibim Men Cucumber,Pack,South Korea,5
+Paldo,Paldo Korean Traditional Beef Gomtangmen,Pack,South Korea,5
+Paldo,Paldo Namja Ramen (USA version),Pack,South Korea,5
+Samyang Foods,Buldak Bokkeummyun Snack,Pack,South Korea,5
+Samyang Foods,Stew Buldak Bokkeumtangmyun,Pack,South Korea,5
+Samyang Foods,Samyang Ramen Classic Edition,Bowl,South Korea,5
+Samyang Foods,Paegaejang Ramen,Pack,South Korea,5
+Samyang Foods,Red Nagasaki Jjampong,Pack,South Korea,5
+Samyang Foods,Gold Jjamppong Fried Noodle,Pack,South Korea,5
+Samyang Foods,Nagasaki Crab Jjampong,Pack,South Korea,5
+Samyang Foods,Maesaengyitangmyun Baked Noodle,Pack,South Korea,5
+Samyang Foods,Cheese Curry Ramyun,Pack,South Korea,5
+Ottogi,Jin Jjambbong Spicy Seafood Ramyun,Pack,South Korea,5
+MAMA,Oriental Kitchen Instant Rice Vermicelli In Gravy,Pack,Thailand,5
+MAMA,Instant Rice Vermicelli Yentafo Tom Yam Mohfai,Pack,Thailand,5
+MAMA,Cup Rice Noodles Tom Saab Flavour,Cup,Thailand,5
+MAMA,Instant Noodles Coconut Milk Flavour,Pack,Myanmar,5
+MAMA,Seafood Tom Yum Sichek Flavour,Pack,Myanmar,5
+MAMA,Instant Noodles Creamy Shrimp Tom Yum Flavour,Pack,Myanmar,5
+MAMA,Instant Noodles Coconut Milk Flavour,Cup,Myanmar,5
+Mama,Shrimp Creamy Tom Yum,Pack,Thailand,5
+Mama,Mi Goreng,Pack,Thailand,5
+Mama,Instant Noodles Green Curry Flavour Jumbo Pack,Pack,Thailand,5
+Mama,Instant Cup Noodles Shrimp Tom Yum Flavour (Extreme),Cup,Thailand,5
+Mama,Instant Noodles Shrimp Creamy Tom Yum Flavour Jumbo Pack,Pack,Thailand,5
+Mama,Instant Cup Noodles Seafood Pad Kee Mao Flavour,Cup,Thailand,5
+Mama,Cup Yentafo Tom Yum Mohfai,Cup,Thailand,5
+Mama,Cup Shrimp Creamy Tom Yum,Cup,Thailand,5
+Mama,Instant Noodles Egg Protein Noodles coconut milk flavour,Pack,Myanmar,5
+Mama,Non-Fried Instant Noodles Ramen Tonkotsu Flavor,Pack,Thailand,5
+Mama,Instant Rice Vermicelli Bihun Goreng Original Flavour,Pack,Thailand,4.75
+Mama,Yentafo Tom Yum Mohfai Flavour,Pack,Thailand,5
+`;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CSV Parser
+// ─────────────────────────────────────────────────────────────────────────────
+function parseCSV(text) {
+  const rows = [];
+  const lines = text.trim().split('\n');
+  for (const line of lines) {
+    const fields = [];
+    let cur = '', inQuote = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') { inQuote = !inQuote; }
+      else if (ch === ',' && !inQuote) { fields.push(cur.trim()); cur = ''; }
+      else { cur += ch; }
+    }
+    fields.push(cur.trim());
+    rows.push(fields);
+  }
+  return rows;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Parse data
+// ─────────────────────────────────────────────────────────────────────────────
+const allRows = parseCSV(RAW_CSV);
+const data = [];
+for (let i = 1; i < allRows.length; i++) {
+  const r = allRows[i];
+  if (r.length < 5) continue;
+  const stars = parseFloat(r[4]);
+  if (isNaN(stars)) continue;
+  data.push({ brand: r[0], variety: r[1], style: r[2], country: r[3], stars });
+}
+
+const allStyles = [...new Set(data.map(d => d.style).filter(s => s && s.trim() !== ''))].sort();
+const allCountries = [...new Set(data.map(d => d.country))].sort();
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Populate controls
+// ─────────────────────────────────────────────────────────────────────────────
+const styleSelect = document.getElementById('styleFilter');
+styleSelect.innerHTML = '<option value="All">All Styles</option>' +
+  allStyles.map(s => `<option value="${s}">${s}</option>`).join('');
+
+function populateCountrySelect(sel, defaultCountry) {
+  sel.innerHTML = allCountries.map(c =>
+    `<option value="${c}"${c === defaultCountry ? ' selected' : ''}>${c}</option>`
+  ).join('');
+}
+populateCountrySelect(document.getElementById('countryA'), 'Japan');
+populateCountrySelect(document.getElementById('countryB'), 'South Korea');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Color palette — using site accent colors
+// ─────────────────────────────────────────────────────────────────────────────
+const PALETTE = [
+  '#ff7b00','#ff2a5f','#ffb700','#e040fb','#00bcd4','#69f0ae',
+  '#ff6d00','#40c4ff','#b2ff59','#ff4081','#18ffff','#ffd740',
+  '#ff6e40','#64ffda','#ea80fc','#ccff90','#80d8ff','#ff9e80',
+  '#b9f6ca','#ffe57f'
+];
+
+const DOUGHNUT_PALETTE = [
+  '#ff7b00','#ff2a5f','#ffb700','#e040fb','#00bcd4','#69f0ae',
+  '#ff6d00','#40c4ff','#b2ff59','#ff4081','#18ffff','#ffd740'
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Chart instances
+// ─────────────────────────────────────────────────────────────────────────────
+let chart1, chart2, chart3, chart4;
+
+// Helper: get computed CSS variable value for chart text
+function cssVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+function chartTextColor() { return cssVar('--color-text-2') || '#d4c5c2'; }
+function chartGridColor() { return cssVar('--color-border') || 'rgba(255,255,255,0.08)'; }
+
+function initChart1() {
+  chart1 = new Chart(document.getElementById('chart1'), {
+    type: 'bar',
+    data: { labels: [], datasets: [{ label: 'Avg Stars', data: [], backgroundColor: '#ff7b00', borderRadius: 4 }] },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ` Avg: ${ctx.parsed.x.toFixed(2)}` } }
+      },
+      scales: {
+        x: {
+          min: 0, max: 5,
+          title: { display: true, text: 'Avg Stars', color: chartTextColor() },
+          ticks: { color: chartTextColor() },
+          grid: { color: chartGridColor() }
+        },
+        y: { ticks: { color: chartTextColor(), font: { size: 11 } }, grid: { color: chartGridColor() } }
+      }
+    }
+  });
+}
+
+function initChart2() {
+  chart2 = new Chart(document.getElementById('chart2'), {
+    type: 'doughnut',
+    data: { labels: [], datasets: [{ data: [], backgroundColor: DOUGHNUT_PALETTE, borderWidth: 1, borderColor: 'rgba(0,0,0,0.2)' }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'right', labels: { color: chartTextColor(), font: { size: 11 }, boxWidth: 14 } },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed} products` } }
+      }
+    }
+  });
+}
+
+function initChart3() {
+  chart3 = new Chart(document.getElementById('chart3'), {
+    type: 'bar',
+    data: { labels: [], datasets: [{ label: 'Review Count', data: [], backgroundColor: PALETTE.slice(0, 10), borderRadius: 4 }] },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: {
+          label: ctx => ` Count: ${ctx.parsed.x}`,
+          afterLabel: ctx => ` Avg Rating: ${ctx.dataset._avgRatings && ctx.dataset._avgRatings[ctx.dataIndex] !== undefined
+            ? ctx.dataset._avgRatings[ctx.dataIndex].toFixed(2) : '—'}`
+        }}
+      },
+      scales: {
+        x: {
+          title: { display: true, text: 'Review Count', color: chartTextColor() },
+          beginAtZero: true,
+          ticks: { color: chartTextColor() },
+          grid: { color: chartGridColor() }
+        },
+        y: { ticks: { color: chartTextColor(), font: { size: 11 } }, grid: { color: chartGridColor() } }
+      }
+    }
+  });
+}
+
+function initChart4() {
+  chart4 = new Chart(document.getElementById('chart4'), {
+    type: 'bar',
+    data: {
+      labels: ['Avg Rating', 'Review Count (÷100)', 'Quality Score (0–5)'],
+      datasets: [
+        { label: 'Country A', data: [0, 0, 0], backgroundColor: '#ff7b00', borderRadius: 4 },
+        { label: 'Country B', data: [0, 0, 0], backgroundColor: '#ff2a5f', borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: true, position: 'top', labels: { color: chartTextColor() } },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y !== undefined ? ctx.parsed.y.toFixed(3) : '—'}` } }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: { display: true, text: 'Value', color: chartTextColor() },
+          ticks: { color: chartTextColor() },
+          grid: { color: chartGridColor() }
+        },
+        x: { ticks: { color: chartTextColor() }, grid: { color: chartGridColor() } }
+      }
+    }
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Data helpers
+// ─────────────────────────────────────────────────────────────────────────────
+function getFiltered(styleFilter) {
+  if (styleFilter === 'All') return data;
+  return data.filter(d => d.style === styleFilter);
+}
+
+function updateChart1(styleFilter, minReviews) {
+  const filtered = getFiltered(styleFilter);
+  const byCountry = {};
+  for (const d of filtered) {
+    if (!byCountry[d.country]) byCountry[d.country] = { sum: 0, cnt: 0 };
+    byCountry[d.country].sum += d.stars;
+    byCountry[d.country].cnt++;
+  }
+  const entries = Object.entries(byCountry)
+    .filter(([, v]) => v.cnt >= minReviews)
+    .map(([country, v]) => ({ country, avg: v.sum / v.cnt }))
+    .sort((a, b) => b.avg - a.avg);
+
+  chart1.data.labels = entries.map(e => e.country);
+  chart1.data.datasets[0].data = entries.map(e => parseFloat(e.avg.toFixed(3)));
+  chart1.data.datasets[0].backgroundColor = entries.map((_, i) =>
+    `hsl(${25 + i * (60 / Math.max(entries.length, 1))}, 90%, 55%)`
+  );
+  chart1.update();
+  return entries.length;
+}
+
+function updateChart2() {
+  const filtered = data.filter(d => d.style && d.style.trim() !== '');
+  const styleCounts = {};
+  for (const d of filtered) { styleCounts[d.style] = (styleCounts[d.style] || 0) + 1; }
+  const sorted = Object.entries(styleCounts).sort((a, b) => b[1] - a[1]);
+  chart2.data.labels = sorted.map(e => e[0]);
+  chart2.data.datasets[0].data = sorted.map(e => e[1]);
+  chart2.data.datasets[0].backgroundColor = DOUGHNUT_PALETTE.slice(0, sorted.length);
+  chart2.update();
+}
+
+function updateChart3(styleFilter) {
+  const filtered = getFiltered(styleFilter);
+  const brandMap = {};
+  for (const d of filtered) {
+    if (!brandMap[d.brand]) brandMap[d.brand] = { cnt: 0, sum: 0 };
+    brandMap[d.brand].cnt++;
+    brandMap[d.brand].sum += d.stars;
+  }
+  const top10 = Object.entries(brandMap).sort((a, b) => b[1].cnt - a[1].cnt).slice(0, 10);
+  chart3.data.labels = top10.map(e => e[0]);
+  chart3.data.datasets[0].data = top10.map(e => e[1].cnt);
+  chart3.data.datasets[0]._avgRatings = top10.map(e => e[1].sum / e[1].cnt);
+  chart3.data.datasets[0].backgroundColor = PALETTE.slice(0, top10.length);
+  chart3.update();
+}
+
+function countryStats(country) {
+  const rows = data.filter(d => d.country === country);
+  if (rows.length === 0) return null;
+  const avg = rows.reduce((s, d) => s + d.stars, 0) / rows.length;
+  return { avg, cnt: rows.length };
+}
+
+function updateChart4() {
+  const cA = document.getElementById('countryA').value;
+  const cB = document.getElementById('countryB').value;
+  const sA = countryStats(cA);
+  const sB = countryStats(cB);
+  const maxCnt = Math.max(sA ? sA.cnt : 0, sB ? sB.cnt : 0, 1);
+  const norm = Math.log(maxCnt + 1) * 5;
+  function qs(s) {
+    if (!s) return 0;
+    return (s.avg * Math.log(s.cnt + 1)) / norm * 5;
+  }
+  chart4.data.datasets[0].label = cA;
+  chart4.data.datasets[1].label = cB;
+  chart4.data.datasets[0].data = sA ? [sA.avg, sA.cnt / 100, qs(sA)] : [0, 0, 0];
+  chart4.data.datasets[1].data = sB ? [sB.avg, sB.cnt / 100, qs(sB)] : [0, 0, 0];
+  chart4.update();
+  document.getElementById('thA').textContent = cA;
+  document.getElementById('thB').textContent = cB;
+  document.getElementById('tdA_avg').textContent = sA ? sA.avg.toFixed(3) : '—';
+  document.getElementById('tdB_avg').textContent = sB ? sB.avg.toFixed(3) : '—';
+  document.getElementById('tdA_cnt').textContent = sA ? sA.cnt : '—';
+  document.getElementById('tdB_cnt').textContent = sB ? sB.cnt : '—';
+  document.getElementById('tdA_qs').textContent = sA ? qs(sA).toFixed(3) : '—';
+  document.getElementById('tdB_qs').textContent = sB ? qs(sB).toFixed(3) : '—';
+}
+
+function updateAll() {
+  const styleFilter = styleSelect.value;
+  const minReviews = parseInt(document.getElementById('minReviews').value, 10);
+  const countriesShown = updateChart1(styleFilter, minReviews);
+  updateChart2();
+  updateChart3(styleFilter);
+  updateChart4();
+  document.getElementById('minReviewsVal').textContent = minReviews;
+  document.getElementById('p1MinLabel').textContent = minReviews;
+  document.getElementById('footerMin').textContent = minReviews;
+  document.getElementById('badgeFiltered').textContent = `Filtered Products: ${getFiltered(styleFilter).length}`;
+  document.getElementById('badgeCountries').textContent = `Countries Shown: ${countriesShown}`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Event listeners
+// ─────────────────────────────────────────────────────────────────────────────
+styleSelect.addEventListener('change', updateAll);
+document.getElementById('minReviews').addEventListener('input', updateAll);
+document.getElementById('countryA').addEventListener('change', updateChart4);
+document.getElementById('countryB').addEventListener('change', updateChart4);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Init
+// ─────────────────────────────────────────────────────────────────────────────
+initChart1();
+initChart2();
+initChart3();
+initChart4();
+updateAll();
+</script>
+</body>
+</html>
