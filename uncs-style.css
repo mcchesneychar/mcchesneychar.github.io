@@ -350,6 +350,12 @@ main {
   box-shadow: 0 12px 28px rgba(255, 123, 0, 0.2);
 }
 
+/* — Button Row (centers project-btn within cards) ——————————————— */
+.btn-row {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
 /* — Project Button ——————————————————————————————— */
 .project-btn {
   display: inline-flex;
@@ -410,6 +416,9 @@ footer {
   .about-card {
     padding: 2rem;
   }
+  .nav-spacer {
+    display: none;
+  }
   .nav-links {
     gap: 1.5rem;
   }
@@ -419,5 +428,7 @@ footer {
     border-left: none;
     border-right: none;
     border-top: none;
+    justify-content: center;
+    gap: 1.5rem;
   }
 }
