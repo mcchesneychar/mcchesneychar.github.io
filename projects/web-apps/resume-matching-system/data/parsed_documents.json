@@ -1,0 +1,2005 @@
+{
+  "resumes": [
+    {
+      "id": "R001_manufacturing_tech",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R001_manufacturing_tech.docx",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Bri Tanaka",
+          "email": "bri.tanaka@example.com",
+          "phone": "(920) 555-4867",
+          "linkedin": "linkedin.com/in/bri-tanaka",
+          "location": "Green Bay, WI"
+        },
+        "summary": "Experienced manufacturing technician with hands-on expertise in injection molding, machine operation, and quality control across high-volume production environments.",
+        "work_experience": [
+          {
+            "title": "Manufacturing Associate",
+            "company": "Fox Valley Plastics",
+            "start_date": "2023",
+            "end_date": "Present",
+            "bullets": [
+              "Partnered with stakeholders across departments to ship high-impact outcomes.",
+              "Led a team of 7 on cross-functional initiatives delivering measurable results.",
+              "Improved process throughput by 34% through methodical analysis and disciplined execution."
+            ]
+          },
+          {
+            "title": "Manufacturing Associate",
+            "company": "Appleton Industrial",
+            "start_date": "2021",
+            "end_date": "2023",
+            "bullets": [
+              "Won a recognition award for sustained operational excellence in 2022.",
+              "Built repeatable documentation and training that reduced ramp time for new hires."
+            ]
+          },
+          {
+            "title": "Machine Operator",
+            "company": "Appleton Industrial",
+            "start_date": "2019",
+            "end_date": "2021",
+            "bullets": [
+              "Improved process throughput by 11% through methodical analysis and disciplined execution.",
+              "Led a team of 8 on cross-functional initiatives delivering measurable results.",
+              "Built repeatable documentation and training that reduced ramp time for new hires."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Fox Valley Technical College",
+            "field": "Manufacturing Technology",
+            "graduation_year": 2018,
+            "degree": "Associate"
+          }
+        ],
+        "skills": [
+          "injection molding",
+          "CNC operation",
+          "blueprint reading",
+          "OSHA 10",
+          "ISO 9001",
+          "calipers and micrometers",
+          "preventive maintenance"
+        ],
+        "certifications": [
+          {
+            "name": "Forklift Certification",
+            "issuing_body": null,
+            "date": "2022"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R002_rn_healthcare",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R002_rn_healthcare.txt",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "CHARLOTTE UNDERWOOD",
+          "email": "charlotte.underwood@example.com",
+          "phone": "(920) 555-7510",
+          "linkedin": "linkedin.com/in/charlotte-underwood",
+          "location": "Milwaukee, WI"
+        },
+        "summary": "Registered Nurse with 5 years of acute-care and ICU experience. EHR-proficient, comfortable in high-acuity settings, and committed to evidence-based practice.",
+        "work_experience": [
+          {
+            "title": "Registered Nurse",
+            "company": "Children's Wisconsin",
+            "start_date": "2024",
+            "end_date": "Present",
+            "bullets": [
+              "Won a recognition award for sustained operational excellence in 2025.",
+              "Built repeatable documentation and training that reduced ramp time for new hires."
+            ]
+          },
+          {
+            "title": "Registered Nurse",
+            "company": "Ascension Wisconsin",
+            "start_date": "2022",
+            "end_date": "2024",
+            "bullets": [
+              "Built repeatable documentation and training that reduced ramp time for new hires.",
+              "Won a recognition award for sustained operational excellence in 2023."
+            ]
+          },
+          {
+            "title": "ICU Nurse",
+            "company": "Froedtert Hospital",
+            "start_date": "2018",
+            "end_date": "2022",
+            "bullets": [
+              "Reduced defects/errors/incidents by 42% over a 12-month period.",
+              "Improved process throughput by 29% through methodical analysis and disciplined execution.",
+              "Built repeatable documentation and training that reduced ramp time for new hires."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Marquette University",
+            "field": "Nursing (BSN)",
+            "graduation_year": 2019,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "patient assessment",
+          "EHR (Epic)",
+          "IV therapy",
+          "medication administration",
+          "telemetry",
+          "HIPAA",
+          "patient education",
+          "ACLS"
+        ],
+        "certifications": [
+          {
+            "name": "PALS",
+            "issuing_body": null,
+            "date": "2022"
+          },
+          {
+            "name": "ACLS",
+            "issuing_body": null,
+            "date": "2024"
+          },
+          {
+            "name": "RN License (WI)",
+            "issuing_body": null,
+            "date": "2020"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R003_marketing_specialist",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R003_marketing_specialist.docx",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Priya Garcia",
+          "email": "priya.garcia@example.com",
+          "phone": "(920) 555-1686",
+          "linkedin": "linkedin.com/in/priya-garcia",
+          "location": "Remote"
+        },
+        "summary": "Digital marketing specialist with experience in SEO, paid social, and content strategy for B2B technology brands.",
+        "work_experience": [
+          {
+            "title": "Marketing Specialist",
+            "company": "Cascade Health",
+            "start_date": "2022",
+            "end_date": "Present",
+            "bullets": [
+              "Reduced defects/errors/incidents by 31% over a 12-month period.",
+              "Built repeatable documentation and training that reduced ramp time for new hires."
+            ]
+          },
+          {
+            "title": "Demand Generation Manager",
+            "company": "Northwind SaaS",
+            "start_date": "2019",
+            "end_date": "2022",
+            "bullets": [
+              "Partnered with stakeholders across departments to ship high-impact outcomes.",
+              "Reduced defects/errors/incidents by 28% over a 12-month period."
+            ]
+          },
+          {
+            "title": "Demand Generation Manager",
+            "company": "Trek Bicycle",
+            "start_date": "2018",
+            "end_date": "2019",
+            "bullets": [
+              "Won a recognition award for sustained operational excellence in 2019.",
+              "Reduced defects/errors/incidents by 15% over a 12-month period.",
+              "Improved process throughput by 12% through methodical analysis and disciplined execution."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "UW\u2013Madison",
+            "field": "Strategic Communication",
+            "graduation_year": 2021,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "copywriting",
+          "Webflow",
+          "Google Analytics 4",
+          "HubSpot",
+          "SEO",
+          "Google Ads"
+        ],
+        "certifications": [
+          {
+            "name": "HubSpot Marketing Software",
+            "issuing_body": null,
+            "date": "2024"
+          },
+          {
+            "name": "Google Analytics",
+            "issuing_body": null,
+            "date": "2024"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R004_sales_cs",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R004_sales_cs.docx",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Jordan Iverson",
+          "email": "jordan.iverson@example.com",
+          "phone": "(920) 555-2657",
+          "linkedin": "linkedin.com/in/jordan-iverson",
+          "location": "Milwaukee, WI"
+        },
+        "summary": "Customer-success and account-management professional with a track record of expanding mid-market SaaS accounts and reducing churn.",
+        "work_experience": [
+          {
+            "title": "Account Executive",
+            "company": "Salesforce",
+            "start_date": "2022",
+            "end_date": "Present",
+            "bullets": [
+              "Improved process throughput by 25% through methodical analysis and disciplined execution.",
+              "Won a recognition award for sustained operational excellence in 2023."
+            ]
+          },
+          {
+            "title": "Account Executive",
+            "company": "Salesforce",
+            "start_date": "2019",
+            "end_date": "2022",
+            "bullets": [
+              "Built repeatable documentation and training that reduced ramp time for new hires.",
+              "Improved process throughput by 30% through methodical analysis and disciplined execution."
+            ]
+          },
+          {
+            "title": "Onboarding Specialist",
+            "company": "Gainsight",
+            "start_date": "2016",
+            "end_date": "2019",
+            "bullets": [
+              "Partnered with stakeholders across departments to ship high-impact outcomes.",
+              "Led a team of 5 on cross-functional initiatives delivering measurable results.",
+              "Won a recognition award for sustained operational excellence in 2017."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "UW\u2013Milwaukee",
+            "field": "Marketing",
+            "graduation_year": 2017,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "account expansion",
+          "Salesforce",
+          "HubSpot",
+          "customer onboarding",
+          "contract negotiation",
+          "QBRs",
+          "churn analysis"
+        ],
+        "certifications": [
+          {
+            "name": "Salesforce Administrator",
+            "issuing_body": null,
+            "date": "2023"
+          },
+          {
+            "name": "HubSpot Inbound",
+            "issuing_body": null,
+            "date": "2024"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R005_project_manager",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R005_project_manager.pdf",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Jordan Diaz",
+          "email": "jordan.diaz@example.com",
+          "phone": "(920) 555-3385",
+          "linkedin": "linkedin.com/in/jordan-diaz",
+          "location": "Madison, WI"
+        },
+        "summary": "PMP-certified project manager with 8 years coordinating cross-functional software and operations",
+        "work_experience": [
+          {
+            "title": "Scrum Master",
+            "company": "Epic Systems",
+            "start_date": "2024",
+            "end_date": "Present",
+            "bullets": [
+              "(cid:127) Improved process throughput by 20% through methodical analysis and disciplined execution.",
+              "(cid:127) Partnered with stakeholders across departments to ship high-impact outcomes.",
+              "(cid:127) Reduced defects/errors/incidents by 35% over a 12-month period."
+            ]
+          },
+          {
+            "title": "Senior Project Manager",
+            "company": "American Family Insurance",
+            "start_date": "2020",
+            "end_date": "2024",
+            "bullets": [
+              "(cid:127) Improved process throughput by 18% through methodical analysis and disciplined execution.",
+              "(cid:127) Won a recognition award for sustained operational excellence in 2021."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "UW\u2013Madison",
+            "field": "Operations & Information Management",
+            "graduation_year": 2015,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "PMP",
+          "risk management",
+          "budget management",
+          "stakeholder management",
+          "Jira",
+          "Agile",
+          "MS Project",
+          "Scrum"
+        ],
+        "certifications": [
+          {
+            "name": "(cid:127) PMP",
+            "issuing_body": null,
+            "date": "2024"
+          },
+          {
+            "name": "(cid:127) Certified Scrum Master",
+            "issuing_body": null,
+            "date": "2022"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R006_recent_grad_business",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R006_recent_grad_business.docx",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Maya Diaz",
+          "email": "maya.diaz@example.com",
+          "phone": "(920) 555-5771",
+          "linkedin": "linkedin.com/in/maya-diaz",
+          "location": "Oshkosh, WI"
+        },
+        "summary": "Recent business graduate with internship experience in operations and data analysis. Eager to apply quantitative skills in a small-business environment.",
+        "work_experience": [
+          {
+            "title": "Business Analyst Intern",
+            "company": "Lakeshore Capital",
+            "start_date": "2021",
+            "end_date": "Present",
+            "bullets": [
+              "Built repeatable documentation and training that reduced ramp time for new hires.",
+              "Reduced defects/errors/incidents by 18% over a 12-month period.",
+              "Partnered with stakeholders across departments to ship high-impact outcomes."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "UW\u2013Oshkosh",
+            "field": "Information Systems",
+            "graduation_year": 2025,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "Tableau",
+          "process documentation",
+          "PowerPoint",
+          "customer research",
+          "SQL",
+          "Python (basic)",
+          "Excel"
+        ],
+        "certifications": [
+          {
+            "name": "Google Data Analytics Certificate",
+            "issuing_body": null,
+            "date": "2023"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R007_finance_analyst",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R007_finance_analyst.docx",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Grace Fischer",
+          "email": "grace.fischer@example.com",
+          "phone": "(920) 555-9376",
+          "linkedin": "linkedin.com/in/grace-fischer",
+          "location": "Milwaukee, WI"
+        },
+        "summary": "Financial analyst with 4 years of FP&A experience supporting senior leadership with budgeting, forecasting, and variance analysis.",
+        "work_experience": [
+          {
+            "title": "Senior Financial Analyst",
+            "company": "Generac",
+            "start_date": "2023",
+            "end_date": "Present",
+            "bullets": [
+              "Built repeatable documentation and training that reduced ramp time for new hires.",
+              "Led a team of 7 on cross-functional initiatives delivering measurable results."
+            ]
+          },
+          {
+            "title": "Senior Financial Analyst",
+            "company": "Northwestern Mutual",
+            "start_date": "2022",
+            "end_date": "2023",
+            "bullets": [
+              "Led a team of 5 on cross-functional initiatives delivering measurable results.",
+              "Reduced defects/errors/incidents by 16% over a 12-month period.",
+              "Improved process throughput by 18% through methodical analysis and disciplined execution."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Marquette University",
+            "field": "Finance",
+            "graduation_year": 2020,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "forecasting",
+          "variance analysis",
+          "Power BI",
+          "GAAP",
+          "SQL",
+          "financial modeling",
+          "Excel (advanced)"
+        ],
+        "certifications": [
+          {
+            "name": "CFA Level I",
+            "issuing_body": null,
+            "date": "2022"
+          },
+          {
+            "name": "Excel Expert",
+            "issuing_body": null,
+            "date": "2023"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R008_manufacturing_tech",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R008_manufacturing_tech.pdf",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Liam Larson",
+          "email": "liam.larson@example.com",
+          "phone": "(920) 555-1296",
+          "linkedin": "linkedin.com/in/liam-larson",
+          "location": "Appleton, WI"
+        },
+        "summary": "Experienced manufacturing technician with hands-on expertise in injection molding, machine operation,\nand quality control across high-volume production environments.",
+        "work_experience": [
+          {
+            "title": "Machine Operator",
+            "company": "Green Bay Fabrication",
+            "start_date": "2021",
+            "end_date": "Present",
+            "bullets": [
+              "(cid:127) Reduced defects/errors/incidents by 23% over a 12-month period.",
+              "(cid:127) Built repeatable documentation and training that reduced ramp time for new hires."
+            ]
+          },
+          {
+            "title": "Production Technician",
+            "company": "Neenah Polymers",
+            "start_date": "2018",
+            "end_date": "2021",
+            "bullets": [
+              "(cid:127) Improved process throughput by 17% through methodical analysis and disciplined execution.",
+              "(cid:127) Partnered with stakeholders across departments to ship high-impact outcomes."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Fox Valley Technical College",
+            "field": "Manufacturing Technology",
+            "graduation_year": 2018,
+            "degree": "Associate"
+          }
+        ],
+        "skills": [
+          "blueprint reading",
+          "injection molding",
+          "CNC operation",
+          "preventive maintenance",
+          "Six Sigma Yellow Belt",
+          "OSHA 10",
+          "calipers and micrometers"
+        ],
+        "certifications": [
+          {
+            "name": "(cid:127) OSHA 10",
+            "issuing_body": null,
+            "date": "2020"
+          },
+          {
+            "name": "(cid:127) Forklift Certification",
+            "issuing_body": null,
+            "date": "2021"
+          },
+          {
+            "name": "(cid:127) ISO 9001 Internal Auditor",
+            "issuing_body": null,
+            "date": "2021"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R009_manufacturing_tech",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R009_manufacturing_tech.txt",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "ISABELLA CHEN",
+          "email": "isabella.chen@example.com",
+          "phone": "(920) 555-7882",
+          "linkedin": "linkedin.com/in/isabella-chen",
+          "location": "Oshkosh, WI"
+        },
+        "summary": "Experienced manufacturing technician with hands-on expertise in injection molding, machine operation, and quality control across high-volume production environments.",
+        "work_experience": [
+          {
+            "title": "Machine Operator",
+            "company": "Neenah Polymers",
+            "start_date": "2021",
+            "end_date": "Present",
+            "bullets": [
+              "Reduced defects/errors/incidents by 34% over a 12-month period.",
+              "Led a team of 3 on cross-functional initiatives delivering measurable results."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Fox Valley Technical College",
+            "field": "Manufacturing Technology",
+            "graduation_year": 2018,
+            "degree": "Associate"
+          }
+        ],
+        "skills": [
+          "calipers and micrometers",
+          "OSHA 10",
+          "blueprint reading",
+          "injection molding",
+          "preventive maintenance"
+        ],
+        "certifications": [
+          {
+            "name": "OSHA 10",
+            "issuing_body": null,
+            "date": "2023"
+          },
+          {
+            "name": "Forklift Certification",
+            "issuing_body": null,
+            "date": "2022"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R010_recent_grad_business",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R010_recent_grad_business.pdf",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Riley Kowalski",
+          "email": "riley.kowalski@example.com",
+          "phone": "(920) 555-2350",
+          "linkedin": "linkedin.com/in/riley-kowalski",
+          "location": "Appleton, WI"
+        },
+        "summary": "Recent business graduate with internship experience in operations and data analysis. Eager to apply\nquantitative skills in a small-business environment.",
+        "work_experience": [
+          {
+            "title": "Business Analyst Intern",
+            "company": "Fox Cities Chamber",
+            "start_date": "2021",
+            "end_date": "Present",
+            "bullets": [
+              "(cid:127) Reduced defects/errors/incidents by 28% over a 12-month period.",
+              "(cid:127) Built repeatable documentation and training that reduced ramp time for new hires."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "UW\u2013Oshkosh",
+            "field": "Information Systems",
+            "graduation_year": 2025,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "customer research",
+          "Python (basic)",
+          "PowerPoint",
+          "SQL",
+          "Tableau"
+        ],
+        "certifications": [
+          {
+            "name": "(cid:127) Google Data Analytics Certificate",
+            "issuing_body": null,
+            "date": "2024"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R011_finance_analyst",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R011_finance_analyst.html",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Charlotte Edwards \u2013 Resume",
+          "email": "charlotte.edwards@example.com",
+          "phone": "(920) 555-2450",
+          "linkedin": "linkedin.com/in/charlotte-edwards",
+          "location": "Madison, WI"
+        },
+        "summary": "Financial analyst with 4 years of FP&A experience supporting senior leadership with budgeting, forecasting, and variance analysis.",
+        "work_experience": [
+          {
+            "title": "FP&A Analyst",
+            "company": "Generac",
+            "start_date": "2024",
+            "end_date": "Present",
+            "bullets": [
+              "Won a recognition award for sustained operational excellence in 2025.",
+              "Partnered with stakeholders across departments to ship high-impact outcomes."
+            ]
+          },
+          {
+            "title": "Financial Analyst",
+            "company": "Kohl's Corporation",
+            "start_date": "2021",
+            "end_date": "2024",
+            "bullets": [
+              "Reduced defects/errors/incidents by 13% over a 12-month period.",
+              "Improved process throughput by 34% through methodical analysis and disciplined execution.",
+              "Won a recognition award for sustained operational excellence in 2022."
+            ]
+          },
+          {
+            "title": "Financial Analyst",
+            "company": "Generac",
+            "start_date": "2020",
+            "end_date": "2021",
+            "bullets": [
+              "Reduced defects/errors/incidents by 43% over a 12-month period.",
+              "Led a team of 6 on cross-functional initiatives delivering measurable results."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Marquette University",
+            "field": "Finance",
+            "graduation_year": 2020,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "variance analysis",
+          "GAAP",
+          "forecasting",
+          "NetSuite",
+          "Power BI",
+          "financial modeling",
+          "SQL"
+        ],
+        "certifications": [
+          {
+            "name": "CFA Level I",
+            "issuing_body": null,
+            "date": "2023"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R012_project_manager",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R012_project_manager.pdf",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Isabella Johansson",
+          "email": "isabella.johansson@example.com",
+          "phone": "(920) 555-3269",
+          "linkedin": "linkedin.com/in/isabella-johansson",
+          "location": "Remote"
+        },
+        "summary": "PMP-certified project manager with 8 years coordinating cross-functional software and operations",
+        "work_experience": [
+          {
+            "title": "Project Manager",
+            "company": "Northwestern Mutual",
+            "start_date": "2022",
+            "end_date": "Present",
+            "bullets": [
+              "(cid:127) Won a recognition award for sustained operational excellence in 2023.",
+              "(cid:127) Improved process throughput by 35% through methodical analysis and disciplined execution.",
+              "(cid:127) Partnered with stakeholders across departments to ship high-impact outcomes."
+            ]
+          },
+          {
+            "title": "Senior Project Manager",
+            "company": "Epic Systems",
+            "start_date": "2018",
+            "end_date": "2022",
+            "bullets": [
+              "(cid:127) Won a recognition award for sustained operational excellence in 2019.",
+              "(cid:127) Partnered with stakeholders across departments to ship high-impact outcomes.",
+              "(cid:127) Reduced defects/errors/incidents by 10% over a 12-month period."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "UW\u2013Madison",
+            "field": "Operations & Information Management",
+            "graduation_year": 2015,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "risk management",
+          "budget management",
+          "PMP",
+          "stakeholder management",
+          "Scrum",
+          "MS Project"
+        ],
+        "certifications": [
+          {
+            "name": "(cid:127) Certified Scrum Master",
+            "issuing_body": null,
+            "date": "2020"
+          },
+          {
+            "name": "(cid:127) PMP",
+            "issuing_body": null,
+            "date": "2024"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R013_sales_cs",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R013_sales_cs.docx",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Olivia Chen",
+          "email": "olivia.chen@example.com",
+          "phone": "(920) 555-5455",
+          "linkedin": "linkedin.com/in/olivia-chen",
+          "location": "Remote"
+        },
+        "summary": "Customer-success and account-management professional with a track record of expanding mid-market SaaS accounts and reducing churn.",
+        "work_experience": [
+          {
+            "title": "Account Executive",
+            "company": "Northwind SaaS",
+            "start_date": "2022",
+            "end_date": "Present",
+            "bullets": [
+              "Led a team of 8 on cross-functional initiatives delivering measurable results.",
+              "Won a recognition award for sustained operational excellence in 2023.",
+              "Partnered with stakeholders across departments to ship high-impact outcomes."
+            ]
+          },
+          {
+            "title": "Onboarding Specialist",
+            "company": "Northwind SaaS",
+            "start_date": "2019",
+            "end_date": "2022",
+            "bullets": [
+              "Won a recognition award for sustained operational excellence in 2020.",
+              "Reduced defects/errors/incidents by 22% over a 12-month period."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "UW\u2013Milwaukee",
+            "field": "Marketing",
+            "graduation_year": 2017,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "Salesforce",
+          "churn analysis",
+          "QBRs",
+          "contract negotiation",
+          "customer onboarding",
+          "account expansion",
+          "HubSpot"
+        ],
+        "certifications": [
+          {
+            "name": "HubSpot Inbound",
+            "issuing_body": null,
+            "date": "2023"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R014_recent_grad_business",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R014_recent_grad_business.html",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Isabella Nguyen \u2013 Resume",
+          "email": "isabella.nguyen@example.com",
+          "phone": "(920) 555-6582",
+          "linkedin": "linkedin.com/in/isabella-nguyen",
+          "location": "Appleton, WI"
+        },
+        "summary": "Recent business graduate with internship experience in operations and data analysis. Eager to apply quantitative skills in a small-business environment.",
+        "work_experience": [
+          {
+            "title": "Business Analyst Intern",
+            "company": "Lakeshore Capital",
+            "start_date": "2022",
+            "end_date": "Present",
+            "bullets": [
+              "Built repeatable documentation and training that reduced ramp time for new hires.",
+              "Led a team of 2 on cross-functional initiatives delivering measurable results."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "UW\u2013Oshkosh",
+            "field": "Information Systems",
+            "graduation_year": 2025,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "PowerPoint",
+          "SQL",
+          "Excel",
+          "process documentation",
+          "Tableau",
+          "customer research",
+          "Python (basic)"
+        ],
+        "certifications": [
+          {
+            "name": "Google Data Analytics Certificate",
+            "issuing_body": null,
+            "date": "2019"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R015_project_manager",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R015_project_manager.html",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Carter Fischer \u2013 Resume",
+          "email": "carter.fischer@example.com",
+          "phone": "(920) 555-9123",
+          "linkedin": "linkedin.com/in/carter-fischer",
+          "location": "Madison, WI"
+        },
+        "summary": "PMP-certified project manager with 8 years coordinating cross-functional software and operations projects on time and under budget.",
+        "work_experience": [
+          {
+            "title": "Scrum Master",
+            "company": "Epic Systems",
+            "start_date": "2021",
+            "end_date": "Present",
+            "bullets": [
+              "Reduced defects/errors/incidents by 42% over a 12-month period.",
+              "Led a team of 8 on cross-functional initiatives delivering measurable results."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "UW\u2013Madison",
+            "field": "Operations & Information Management",
+            "graduation_year": 2015,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "stakeholder management",
+          "budget management",
+          "Agile",
+          "risk management",
+          "Scrum",
+          "PMP",
+          "Jira"
+        ],
+        "certifications": [
+          {
+            "name": "Certified Scrum Master",
+            "issuing_body": null,
+            "date": "2023"
+          },
+          {
+            "name": "PMP",
+            "issuing_body": null,
+            "date": "2023"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R016_rn_healthcare",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R016_rn_healthcare.pdf",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Daniel Hansen",
+          "email": "daniel.hansen@example.com",
+          "phone": "(920) 555-5317",
+          "linkedin": "linkedin.com/in/daniel-hansen",
+          "location": "Brookfield, WI"
+        },
+        "summary": "Registered Nurse with 5 years of acute-care and ICU experience. EHR-proficient, comfortable in\nhigh-acuity settings, and committed to evidence-based practice.",
+        "work_experience": [
+          {
+            "title": "ICU Nurse",
+            "company": "Froedtert Hospital",
+            "start_date": "2022",
+            "end_date": "Present",
+            "bullets": [
+              "(cid:127) Built repeatable documentation and training that reduced ramp time for new hires.",
+              "(cid:127) Led a team of 5 on cross-functional initiatives delivering measurable results.",
+              "(cid:127) Reduced defects/errors/incidents by 30% over a 12-month period."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Marquette University",
+            "field": "Nursing (BSN)",
+            "graduation_year": 2019,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "telemetry",
+          "patient assessment",
+          "HIPAA",
+          "medication administration",
+          "EHR (Epic)",
+          "IV therapy"
+        ],
+        "certifications": [
+          {
+            "name": "(cid:127) RN License (WI)",
+            "issuing_body": null,
+            "date": "2018"
+          },
+          {
+            "name": "(cid:127) BLS",
+            "issuing_body": null,
+            "date": "2024"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R017_sales_cs",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R017_sales_cs.docx",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Logan Chen",
+          "email": "logan.chen@example.com",
+          "phone": "(920) 555-7979",
+          "linkedin": "linkedin.com/in/logan-chen",
+          "location": "Minneapolis, MN"
+        },
+        "summary": "Customer-success and account-management professional with a track record of expanding mid-market SaaS accounts and reducing churn.",
+        "work_experience": [
+          {
+            "title": "Account Executive",
+            "company": "Hubspot",
+            "start_date": "2022",
+            "end_date": "Present",
+            "bullets": [
+              "Won a recognition award for sustained operational excellence in 2023.",
+              "Partnered with stakeholders across departments to ship high-impact outcomes.",
+              "Reduced defects/errors/incidents by 24% over a 12-month period."
+            ]
+          },
+          {
+            "title": "Senior CSM",
+            "company": "Hubspot",
+            "start_date": "2018",
+            "end_date": "2022",
+            "bullets": [
+              "Improved process throughput by 12% through methodical analysis and disciplined execution.",
+              "Led a team of 8 on cross-functional initiatives delivering measurable results."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "UW\u2013Milwaukee",
+            "field": "Marketing",
+            "graduation_year": 2017,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "QBRs",
+          "account expansion",
+          "Salesforce",
+          "churn analysis",
+          "customer onboarding",
+          "contract negotiation",
+          "HubSpot"
+        ],
+        "certifications": [
+          {
+            "name": "Salesforce Administrator",
+            "issuing_body": null,
+            "date": "2020"
+          },
+          {
+            "name": "HubSpot Inbound",
+            "issuing_body": null,
+            "date": "2019"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R018_manufacturing_tech",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R018_manufacturing_tech.docx",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Emily Walsh",
+          "email": "emily.walsh@example.com",
+          "phone": "(920) 555-4027",
+          "linkedin": "linkedin.com/in/emily-walsh",
+          "location": "Appleton, WI"
+        },
+        "summary": "Experienced manufacturing technician with hands-on expertise in injection molding, machine operation, and quality control across high-volume production environments.",
+        "work_experience": [
+          {
+            "title": "Production Technician",
+            "company": "Oshkosh Manufacturing Co",
+            "start_date": "2021",
+            "end_date": "Present",
+            "bullets": [
+              "Improved process throughput by 20% through methodical analysis and disciplined execution.",
+              "Partnered with stakeholders across departments to ship high-impact outcomes."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Fox Valley Technical College",
+            "field": "Manufacturing Technology",
+            "graduation_year": 2018,
+            "degree": "Associate"
+          }
+        ],
+        "skills": [
+          "Six Sigma Yellow Belt",
+          "CNC operation",
+          "ISO 9001",
+          "calipers and micrometers",
+          "blueprint reading"
+        ],
+        "certifications": [
+          {
+            "name": "Forklift Certification",
+            "issuing_body": null,
+            "date": "2023"
+          },
+          {
+            "name": "OSHA 10",
+            "issuing_body": null,
+            "date": "2020"
+          },
+          {
+            "name": "ISO 9001 Internal Auditor",
+            "issuing_body": null,
+            "date": "2024"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R019_marketing_specialist",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R019_marketing_specialist.pdf",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Logan Schmidt",
+          "email": "logan.schmidt@example.com",
+          "phone": "(920) 555-7845",
+          "linkedin": "linkedin.com/in/logan-schmidt",
+          "location": "Madison, WI"
+        },
+        "summary": "Digital marketing specialist with experience in SEO, paid social, and content strategy for B2B\ntechnology brands.",
+        "work_experience": [
+          {
+            "title": "Content Marketing Lead",
+            "company": "Cascade Health",
+            "start_date": "2022",
+            "end_date": "Present",
+            "bullets": [
+              "(cid:127) Partnered with stakeholders across departments to ship high-impact outcomes.",
+              "(cid:127) Built repeatable documentation and training that reduced ramp time for new hires."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "UW\u2013Madison",
+            "field": "Strategic Communication",
+            "graduation_year": 2021,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "Meta Ads",
+          "SEO",
+          "Google Ads",
+          "HubSpot",
+          "Figma",
+          "Google Analytics 4",
+          "Webflow",
+          "copywriting"
+        ],
+        "certifications": [
+          {
+            "name": "(cid:127) Google Analytics",
+            "issuing_body": null,
+            "date": "2020"
+          },
+          {
+            "name": "(cid:127) HubSpot Marketing Software",
+            "issuing_body": null,
+            "date": "2023"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R020_project_manager",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R020_project_manager.txt",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "CALEB SCHMIDT",
+          "email": "caleb.schmidt@example.com",
+          "phone": "(920) 555-5046",
+          "linkedin": "linkedin.com/in/caleb-schmidt",
+          "location": "Milwaukee, WI"
+        },
+        "summary": "PMP-certified project manager with 8 years coordinating cross-functional software and operations projects on time and under budget.",
+        "work_experience": [
+          {
+            "title": "Senior Project Manager",
+            "company": "American Family Insurance",
+            "start_date": "2023",
+            "end_date": "Present",
+            "bullets": [
+              "Built repeatable documentation and training that reduced ramp time for new hires.",
+              "Improved process throughput by 10% through methodical analysis and disciplined execution."
+            ]
+          },
+          {
+            "title": "Senior Project Manager",
+            "company": "Rockwell Automation",
+            "start_date": "2022",
+            "end_date": "2023",
+            "bullets": [
+              "Improved process throughput by 24% through methodical analysis and disciplined execution.",
+              "Won a recognition award for sustained operational excellence in 2023."
+            ]
+          },
+          {
+            "title": "Scrum Master",
+            "company": "American Family Insurance",
+            "start_date": "2021",
+            "end_date": "2022",
+            "bullets": [
+              "Led a team of 3 on cross-functional initiatives delivering measurable results.",
+              "Built repeatable documentation and training that reduced ramp time for new hires.",
+              "Won a recognition award for sustained operational excellence in 2022."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "UW\u2013Madison",
+            "field": "Operations & Information Management",
+            "graduation_year": 2015,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "MS Project",
+          "risk management",
+          "stakeholder management",
+          "Scrum",
+          "Jira",
+          "PMP",
+          "budget management"
+        ],
+        "certifications": [
+          {
+            "name": "Certified Scrum Master",
+            "issuing_body": null,
+            "date": "2019"
+          },
+          {
+            "name": "PMP",
+            "issuing_body": null,
+            "date": "2018"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R021_finance_analyst",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R021_finance_analyst.txt",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "GRACE MUELLER",
+          "email": "grace.mueller@example.com",
+          "phone": "(920) 555-2737",
+          "linkedin": "linkedin.com/in/grace-mueller",
+          "location": "Madison, WI"
+        },
+        "summary": "Financial analyst with 4 years of FP&A experience supporting senior leadership with budgeting, forecasting, and variance analysis.",
+        "work_experience": [
+          {
+            "title": "Senior Financial Analyst",
+            "company": "Rockwell Automation",
+            "start_date": "2023",
+            "end_date": "Present",
+            "bullets": [
+              "Partnered with stakeholders across departments to ship high-impact outcomes.",
+              "Improved process throughput by 21% through methodical analysis and disciplined execution.",
+              "Led a team of 8 on cross-functional initiatives delivering measurable results."
+            ]
+          },
+          {
+            "title": "Financial Analyst",
+            "company": "Northwestern Mutual",
+            "start_date": "2020",
+            "end_date": "2023",
+            "bullets": [
+              "Improved process throughput by 35% through methodical analysis and disciplined execution.",
+              "Reduced defects/errors/incidents by 31% over a 12-month period.",
+              "Partnered with stakeholders across departments to ship high-impact outcomes."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Marquette University",
+            "field": "Finance",
+            "graduation_year": 2020,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "SQL",
+          "Power BI",
+          "financial modeling",
+          "variance analysis",
+          "NetSuite",
+          "Excel (advanced)",
+          "forecasting"
+        ],
+        "certifications": [
+          {
+            "name": "CFA Level I",
+            "issuing_body": null,
+            "date": "2019"
+          },
+          {
+            "name": "Excel Expert",
+            "issuing_body": null,
+            "date": "2019"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R022_project_manager",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R022_project_manager.pdf",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Emily O'Brien",
+          "email": "emily.obrien@example.com",
+          "phone": "(920) 555-5872",
+          "linkedin": "linkedin.com/in/emily-obrien",
+          "location": "Madison, WI"
+        },
+        "summary": "PMP-certified project manager with 8 years coordinating cross-functional software and operations",
+        "work_experience": [
+          {
+            "title": "Senior Project Manager",
+            "company": "Northwestern Mutual",
+            "start_date": "2023",
+            "end_date": "Present",
+            "bullets": [
+              "(cid:127) Built repeatable documentation and training that reduced ramp time for new hires.",
+              "(cid:127) Improved process throughput by 31% through methodical analysis and disciplined execution."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "UW\u2013Madison",
+            "field": "Operations & Information Management",
+            "graduation_year": 2015,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "PMP",
+          "risk management",
+          "MS Project",
+          "Scrum",
+          "stakeholder management",
+          "Jira",
+          "Agile"
+        ],
+        "certifications": [
+          {
+            "name": "(cid:127) PMP",
+            "issuing_body": null,
+            "date": "2018"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R023_saas_engineer",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R023_saas_engineer.pdf",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Olivia Schmidt",
+          "email": "olivia.schmidt@example.com",
+          "phone": "(920) 555-1410",
+          "linkedin": "linkedin.com/in/olivia-schmidt",
+          "location": "Remote"
+        },
+        "summary": "Full-stack software engineer with 6 years building B2B SaaS products. Strong in TypeScript, Python,\nand cloud-native architectures on AWS.",
+        "work_experience": [
+          {
+            "title": "Full-Stack Engineer",
+            "company": "Notion",
+            "start_date": "2024",
+            "end_date": "Present",
+            "bullets": [
+              "(cid:127) Led a team of 2 on cross-functional initiatives delivering measurable results.",
+              "(cid:127) Partnered with stakeholders across departments to ship high-impact outcomes.",
+              "(cid:127) Improved process throughput by 16% through methodical analysis and disciplined execution."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "University of Wisconsin\u2013Madison",
+            "field": "Computer Sciences",
+            "graduation_year": 2018,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "TypeScript",
+          "PostgreSQL",
+          "GraphQL",
+          "React",
+          "Python",
+          "Kubernetes",
+          "AWS Lambda",
+          "Terraform"
+        ],
+        "certifications": [
+          {
+            "name": "(cid:127) AWS Solutions Architect Associate",
+            "issuing_body": null,
+            "date": "2023"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R024_saas_engineer",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R024_saas_engineer.pdf",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Emily Edwards",
+          "email": "emily.edwards@example.com",
+          "phone": "(920) 555-9735",
+          "linkedin": "linkedin.com/in/emily-edwards",
+          "location": "Remote"
+        },
+        "summary": "Full-stack software engineer with 6 years building B2B SaaS products. Strong in TypeScript, Python,\nand cloud-native architectures on AWS.",
+        "work_experience": [
+          {
+            "title": "Platform Engineer",
+            "company": "Hubspot",
+            "start_date": "2022",
+            "end_date": "Present",
+            "bullets": [
+              "(cid:127) Partnered with stakeholders across departments to ship high-impact outcomes.",
+              "(cid:127) Led a team of 8 on cross-functional initiatives delivering measurable results."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "University of Wisconsin\u2013Madison",
+            "field": "Computer Sciences",
+            "graduation_year": 2018,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "Python",
+          "TypeScript",
+          "Docker",
+          "Kubernetes",
+          "Terraform",
+          "Node.js",
+          "PostgreSQL",
+          "GraphQL"
+        ],
+        "certifications": [
+          {
+            "name": "(cid:127) AWS Solutions Architect Associate",
+            "issuing_body": null,
+            "date": "2020"
+          }
+        ],
+        "projects": []
+      }
+    },
+    {
+      "id": "R025_recent_grad_business",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/resumes/R025_recent_grad_business.pdf",
+      "parse_confidence": 1.0,
+      "resume": {
+        "contact": {
+          "name": "Ava Quinn",
+          "email": "ava.quinn@example.com",
+          "phone": "(920) 555-4195",
+          "linkedin": "linkedin.com/in/ava-quinn",
+          "location": "Oshkosh, WI"
+        },
+        "summary": "Recent business graduate with internship experience in operations and data analysis. Eager to apply\nquantitative skills in a small-business environment.",
+        "work_experience": [
+          {
+            "title": "Business Analyst Intern",
+            "company": "Northwoods Bank",
+            "start_date": "2023",
+            "end_date": "Present",
+            "bullets": [
+              "(cid:127) Won a recognition award for sustained operational excellence in 2024.",
+              "(cid:127) Built repeatable documentation and training that reduced ramp time for new hires.",
+              "(cid:127) Led a team of 4 on cross-functional initiatives delivering measurable results."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "UW\u2013Oshkosh",
+            "field": "Information Systems",
+            "graduation_year": 2025,
+            "degree": "BS"
+          }
+        ],
+        "skills": [
+          "customer research",
+          "PowerPoint",
+          "Tableau",
+          "SQL",
+          "Excel",
+          "Python (basic)"
+        ],
+        "certifications": [
+          {
+            "name": "(cid:127) Google Data Analytics Certificate",
+            "issuing_body": null,
+            "date": "2023"
+          }
+        ],
+        "projects": []
+      }
+    }
+  ],
+  "jobs": [
+    {
+      "id": "J001_lakeside_plastics",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/jobs/J001_lakeside_plastics.html",
+      "parse_confidence": 1.0,
+      "job": {
+        "title": "Production Technician II",
+        "company": null,
+        "location": "Oshkosh, WI",
+        "summary": "Operate injection-molding equipment on second shift in our Oshkosh facility. Strong attention to detail and a steady hand are more important than formal credentials here.",
+        "responsibilities": [
+          "Operate injection-molding presses on second shift",
+          "Perform line-side quality checks against print specifications",
+          "Complete preventive maintenance per the daily PM schedule",
+          "Document defects and corrective actions in the QMS"
+        ],
+        "requirements": [
+          "2+ years operating production equipment in a manufacturing setting",
+          "Comfortable reading blueprints and basic GD&T",
+          "OSHA 10 or willingness to complete within 60 days"
+        ],
+        "preferred": [
+          "Prior injection-molding experience",
+          "Local to the Fox Valley area",
+          "Six Sigma Yellow Belt"
+        ],
+        "skills": [
+          "injection molding",
+          "blueprint reading",
+          "OSHA 10",
+          "preventive maintenance"
+        ],
+        "salary_range": "$22-$26/hr",
+        "company_id": "lakeside_plastics"
+      }
+    },
+    {
+      "id": "J002_lakeside_plastics",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/jobs/J002_lakeside_plastics.pdf",
+      "parse_confidence": 1.0,
+      "job": {
+        "title": "Quality Inspector",
+        "company": "Lakeside Plastics Inc",
+        "location": "Oshkosh, WI",
+        "summary": "Run first-article and in-process inspections on plastic components. Help us keep scrap below 1.5%.",
+        "responsibilities": [
+          "(cid:127) Perform first-article and in-process inspections",
+          "(cid:127) Calibrate and use precision measurement tools",
+          "(cid:127) Lead supplier corrective-action conversations",
+          "(cid:127) Maintain ISO 9001 documentation"
+        ],
+        "requirements": [
+          "(cid:127) 3+ years in a quality role in manufacturing",
+          "(cid:127) Proficient with calipers, micrometers, and CMMs",
+          "(cid:127) ISO 9001 familiarity"
+        ],
+        "preferred": [
+          "(cid:127) ASQ CQI or CQA certification",
+          "(cid:127) Local candidates strongly preferred"
+        ],
+        "skills": [
+          "ISO 9001",
+          "calipers and micrometers",
+          "CMM",
+          "supplier quality"
+        ],
+        "salary_range": "$26-$32/hr",
+        "company_id": "lakeside_plastics"
+      }
+    },
+    {
+      "id": "J003_lakeside_plastics",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/jobs/J003_lakeside_plastics.txt",
+      "parse_confidence": 1.0,
+      "job": {
+        "title": "MAINTENANCE MECHANIC",
+        "company": null,
+        "location": null,
+        "summary": null,
+        "responsibilities": [
+          "Diagnose and repair hydraulic, pneumatic, and electrical issues",
+          "Lead preventive-maintenance program execution",
+          "Mentor junior technicians on troubleshooting"
+        ],
+        "requirements": [
+          "5+ years industrial maintenance experience",
+          "Working knowledge of PLCs (Allen-Bradley preferred)",
+          "OSHA 10"
+        ],
+        "preferred": [
+          "Injection-molding press experience",
+          "Local to Fox Valley"
+        ],
+        "skills": [
+          "industrial maintenance",
+          "PLCs",
+          "hydraulics",
+          "pneumatics",
+          "Allen",
+          "Bradley"
+        ],
+        "salary_range": "$30-$38/hr",
+        "company_id": "lakeside_plastics"
+      }
+    },
+    {
+      "id": "J004_lakeside_plastics",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/jobs/J004_lakeside_plastics.docx",
+      "parse_confidence": 1.0,
+      "job": {
+        "title": "Office Manager / Hiring Coordinator",
+        "company": "Lakeside Plastics Inc",
+        "location": "Oshkosh, WI",
+        "summary": "Wear multiple hats at our 60-person plant: hiring, payroll, vendor scheduling, and general office operations. Ideal for someone who likes variety.",
+        "responsibilities": [
+          "Coordinate recruiting and onboarding for hourly and salaried roles",
+          "Manage payroll and benefits administration",
+          "Schedule outside vendors and inspections"
+        ],
+        "requirements": [
+          "3+ years in office management or HR coordination",
+          "Excel proficiency",
+          "Comfortable working independently"
+        ],
+        "preferred": [
+          "Manufacturing or industrial background",
+          "Local to the Fox Valley area"
+        ],
+        "skills": [
+          "Excel",
+          "process documentation",
+          "HR coordination"
+        ],
+        "salary_range": "$55,000-$70,000",
+        "company_id": "lakeside_plastics"
+      }
+    },
+    {
+      "id": "J005_northwind_saas",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/jobs/J005_northwind_saas.pdf",
+      "parse_confidence": 1.0,
+      "job": {
+        "title": "Senior Full-Stack Engineer",
+        "company": "Northwind SaaS",
+        "location": "Madison, WI",
+        "summary": "Build the next generation of our reporting platform. TypeScript + React on the front, Python on the back,\nAWS underneath.",
+        "responsibilities": [
+          "(cid:127) Design and ship full-stack features end-to-end",
+          "(cid:127) Own service reliability for the reporting domain",
+          "(cid:127) Mentor mid-level engineers and review PRs"
+        ],
+        "requirements": [
+          "(cid:127) 5+ years professional software engineering experience",
+          "(cid:127) Strong TypeScript and Python",
+          "(cid:127) Experience operating services on AWS"
+        ],
+        "preferred": [
+          "(cid:127) Prior B2B SaaS experience",
+          "(cid:127) Kubernetes / Terraform familiarity"
+        ],
+        "skills": [
+          "TypeScript",
+          "Python",
+          "React",
+          "AWS",
+          "PostgreSQL",
+          "Docker"
+        ],
+        "salary_range": "$140,000-$175,000",
+        "company_id": "northwind_saas"
+      }
+    },
+    {
+      "id": "J006_northwind_saas",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/jobs/J006_northwind_saas.txt",
+      "parse_confidence": 1.0,
+      "job": {
+        "title": "CUSTOMER SUCCESS MANAGER",
+        "company": null,
+        "location": null,
+        "summary": null,
+        "responsibilities": [
+          "Drive product adoption and renewal across mid-market accounts",
+          "Lead QBRs and executive business reviews",
+          "Partner with Sales on expansion opportunities"
+        ],
+        "requirements": [
+          "3+ years customer success experience in B2B SaaS",
+          "Strong communication and account-planning skills",
+          "Salesforce proficiency"
+        ],
+        "preferred": [
+          "HubSpot ecosystem experience",
+          "Existing book in HR/payroll software"
+        ],
+        "skills": [
+          "Salesforce",
+          "HubSpot",
+          "account expansion",
+          "QBRs"
+        ],
+        "salary_range": "$95,000-$120,000",
+        "company_id": "northwind_saas"
+      }
+    },
+    {
+      "id": "J007_northwind_saas",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/jobs/J007_northwind_saas.pdf",
+      "parse_confidence": 1.0,
+      "job": {
+        "title": "Demand Generation Manager",
+        "company": "Northwind SaaS",
+        "location": "Madison, WI",
+        "summary": "Own paid acquisition and content distribution for our self-serve funnel. Strong analytics chops required.",
+        "responsibilities": [
+          "(cid:127) Run paid acquisition across Google, LinkedIn, and Meta",
+          "(cid:127) Build and instrument the self-serve funnel",
+          "(cid:127) Collaborate with content and product marketing"
+        ],
+        "requirements": [
+          "(cid:127) 4+ years demand generation in B2B SaaS",
+          "(cid:127) Hands-on with paid platforms and analytics",
+          "(cid:127) SQL or strong spreadsheet analytical ability"
+        ],
+        "preferred": [
+          "(cid:127) HubSpot or Marketo experience",
+          "(cid:127) Webflow or similar CMS experience"
+        ],
+        "skills": [
+          "Google Ads",
+          "Meta Ads",
+          "HubSpot",
+          "Google Analytics 4",
+          "SEO"
+        ],
+        "salary_range": "$110,000-$135,000",
+        "company_id": "northwind_saas"
+      }
+    },
+    {
+      "id": "J008_northwind_saas",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/jobs/J008_northwind_saas.docx",
+      "parse_confidence": 1.0,
+      "job": {
+        "title": "Platform Engineer",
+        "company": "Northwind SaaS",
+        "location": "Madison, WI",
+        "summary": "Own developer experience and shared infrastructure for our 30-engineer org. Terraform, CI/CD, observability.",
+        "responsibilities": [
+          "Own and improve our internal developer platform",
+          "Lead CI/CD reliability and build-time reduction",
+          "Drive observability and on-call tooling"
+        ],
+        "requirements": [
+          "4+ years platform / infrastructure engineering",
+          "Strong with Terraform, AWS, and CI/CD",
+          "Comfortable in Python or Go"
+        ],
+        "preferred": [
+          "Experience scaling a startup engineering org",
+          "Background in SRE or distributed systems"
+        ],
+        "skills": [
+          "Terraform",
+          "AWS",
+          "Kubernetes",
+          "CI/CD",
+          "Python"
+        ],
+        "salary_range": "$150,000-$185,000",
+        "company_id": "northwind_saas"
+      }
+    },
+    {
+      "id": "J009_cascade_health",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/jobs/J009_cascade_health.txt",
+      "parse_confidence": 1.0,
+      "job": {
+        "title": "REGISTERED NURSE \u2014 ICU",
+        "company": null,
+        "location": null,
+        "summary": null,
+        "responsibilities": [
+          "Provide direct patient care in the cardiac ICU",
+          "Collaborate with multidisciplinary care teams",
+          "Document accurately and timely in Epic"
+        ],
+        "requirements": [
+          "Active WI RN license",
+          "ACLS and BLS",
+          "2+ years acute care experience"
+        ],
+        "preferred": [
+          "ICU or telemetry experience",
+          "BSN preferred"
+        ],
+        "skills": [
+          "EHR (Epic)",
+          "ACLS",
+          "BLS",
+          "telemetry",
+          "patient assessment"
+        ],
+        "salary_range": "$38-$52/hr",
+        "company_id": "cascade_health"
+      }
+    },
+    {
+      "id": "J010_cascade_health",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/jobs/J010_cascade_health.pdf",
+      "parse_confidence": 1.0,
+      "job": {
+        "title": "Clinical EHR Analyst",
+        "company": "Cascade Health Systems",
+        "location": "Milwaukee, WI",
+        "summary": "Bridge clinical workflows and our Epic implementation. Help nurses and physicians get more from the\nEHR.",
+        "responsibilities": [
+          "(cid:127) Translate clinical workflow needs into Epic configuration",
+          "(cid:127) Support go-lives and upgrades",
+          "(cid:127) Train clinicians on EHR best practices"
+        ],
+        "requirements": [
+          "(cid:127) Clinical background (RN, RT, or similar)",
+          "(cid:127) Epic experience required",
+          "(cid:127) HIPAA knowledge"
+        ],
+        "preferred": [
+          "(cid:127) Epic certification (Inpatient, Ambulatory, or ClinDoc)",
+          "(cid:127) Experience supporting a hospital go-live"
+        ],
+        "skills": [
+          "EHR (Epic)",
+          "HIPAA",
+          "clinical workflows",
+          "patient education"
+        ],
+        "salary_range": "$78,000-$102,000",
+        "company_id": "cascade_health"
+      }
+    },
+    {
+      "id": "J011_cascade_health",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/jobs/J011_cascade_health.docx",
+      "parse_confidence": 1.0,
+      "job": {
+        "title": "Patient Access Manager",
+        "company": "Cascade Health Systems",
+        "location": "Milwaukee, WI",
+        "summary": "Lead a 12-person patient-access team across two hospital campuses. Improve registration accuracy and reduce point-of-service denials.",
+        "responsibilities": [
+          "Lead day-to-day patient-access operations",
+          "Drive registration accuracy and POS collections",
+          "Partner with revenue cycle on denial reduction"
+        ],
+        "requirements": [
+          "5+ years patient access or revenue cycle experience",
+          "3+ years people management"
+        ],
+        "preferred": [
+          "Epic Cadence or Prelude experience",
+          "Local to Milwaukee"
+        ],
+        "skills": [
+          "Excel",
+          "EHR (Epic)",
+          "HIPAA",
+          "people management"
+        ],
+        "salary_range": "$85,000-$108,000",
+        "company_id": "cascade_health"
+      }
+    },
+    {
+      "id": "J012_cascade_health",
+      "source_path": "/Users/charliemcchesney/Downloads/IS 303/final project/resume-job-matcher/data/jobs/J012_cascade_health.html",
+      "parse_confidence": 1.0,
+      "job": {
+        "title": "Healthcare Data Analyst",
+        "company": null,
+        "location": "Milwaukee, WI",
+        "summary": "Surface insights from our clinical and operational data to inform leadership decisions. Strong SQL required.",
+        "responsibilities": [
+          "Build dashboards and reports for clinical and operational leaders",
+          "Investigate data-quality issues in collaboration with IT",
+          "Partner with quality and safety teams on improvement initiatives"
+        ],
+        "requirements": [
+          "3+ years analytics experience",
+          "Strong SQL and visualization tool experience (Power BI or Tableau)",
+          "Comfortable working with PHI"
+        ],
+        "preferred": [
+          "Healthcare or insurance experience",
+          "Familiarity with Epic Clarity"
+        ],
+        "skills": [
+          "SQL",
+          "Tableau",
+          "Power BI",
+          "HIPAA",
+          "EHR (Epic)"
+        ],
+        "salary_range": "$80,000-$105,000",
+        "company_id": "cascade_health"
+      }
+    }
+  ]
+}

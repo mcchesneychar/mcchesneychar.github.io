@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume-to-Job Matching System — CCM's Portfolio</title>
+  <meta name="description" content="Interactive viewer for my IS 303 / Generative AI final project: a six-stage resume-to-job matching system with per-company calibration.">
+  <link rel="stylesheet" href="../../../uncs-style.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="../../../theme.js"></script>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-spacer" aria-hidden="true"></div>
+      <ul class="nav-links">
+        <li><a href="../../../index.html">Home</a></li>
+        <li><a href="../../../projects.html" class="active">Projects</a></li>
+        <li><a href="../../../contact.html">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="demo-hero">
+      <p class="kicker">IS 303 · Generative AI · Spring 2026 · Final Project</p>
+      <h1>Resume-to-Job Matching System</h1>
+      <p class="sub">A six-stage pipeline that ranks candidates and learns each company's hiring preferences over time. This is the read-only interactive viewer — explore every match, parsed schema, calibration profile, and audit log the system produced.</p>
+    </section>
+
+    <nav class="tab-nav" id="tabNav" role="tablist">
+      <button data-tab="match-explorer" class="active" role="tab">Match Explorer</button>
+      <button data-tab="inspector" role="tab">Document Inspector</button>
+      <button data-tab="feedback" role="tab">Feedback Loop</button>
+      <button data-tab="disagreements" role="tab">Disagreements</button>
+      <button data-tab="calibration" role="tab">Calibration Profile</button>
+    </nav>
+
+    <div id="loading" class="loading">Loading data…</div>
+    <div id="error" class="error-box" hidden></div>
+
+    <!-- Tab: Match Explorer -->
+    <section id="match-explorer" class="tab-panel active" role="tabpanel">
+      <div class="card">
+        <h2>Top job matches per candidate</h2>
+        <p class="caption">Raw semantic similarity (left) is what the encoder produced. Adjusted (right) is after the per-company calibration profile applied its learned feature weights. Differences reveal where institutional memory diverges from generic semantic matching.</p>
+
+        <div class="controls">
+          <div class="field">
+            <label for="meResume">Candidate</label>
+            <select id="meResume"></select>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <p class="subhead">Raw semantic ranking</p>
+            <table>
+              <thead><tr><th>#</th><th>Job</th><th>Title</th><th>Score</th></tr></thead>
+              <tbody id="meRawBody"></tbody>
+            </table>
+          </div>
+          <div>
+            <p class="subhead">After company calibration</p>
+            <table>
+              <thead><tr><th>#</th><th>Job</th><th>Title</th><th>Score</th></tr></thead>
+              <tbody id="meAdjBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="meRationale" style="margin-top:18px"></div>
+        <div id="meOverlap" style="margin-top:12px"></div>
+      </div>
+    </section>
+
+    <!-- Tab: Document Inspector -->
+    <section id="inspector" class="tab-panel" role="tabpanel">
+      <div class="card">
+        <h2>Document inspector</h2>
+        <p class="caption">Pick any ingested file to see its ingestion envelope (per Section 3.3 of the system doc) and the Pydantic-validated parsed schema (Sections 4.1 / 4.2). Fields the parser couldn't extract are <code>null</code> — never guessed.</p>
+
+        <div class="controls">
+          <div class="field-radio" id="diType">
+            <button data-type="resume" class="active">Resume</button>
+            <button data-type="job">Job posting</button>
+          </div>
+          <div class="field">
+            <label for="diSelect">Document</label>
+            <select id="diSelect"></select>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <p class="subhead">Ingestion envelope</p>
+            <pre class="json" id="diMeta"></pre>
+          </div>
+          <div>
+            <p class="subhead">Parsed schema</p>
+            <pre class="json" id="diSchema"></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab: Feedback Loop -->
+    <section id="feedback" class="tab-panel" role="tabpanel">
+      <div class="card">
+        <h2>Stage 5 · Hiring outcomes drive future ranking</h2>
+        <p class="caption">Each company accumulates outcome events that the intelligence layer turns into per-feature weight adjustments. The dashboard below summarizes where each company currently sits in the cold-start → industry-defaults → company-specific progression.</p>
+        <table>
+          <thead><tr><th>Company</th><th>Industry</th><th>Phase</th><th>Hires</th><th>Tracked features</th><th>Accuracy (90-day)</th></tr></thead>
+          <tbody id="fbBody"></tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>How signal becomes adjustment</h3>
+        <p class="caption">From Section 7.2 of the system documentation:</p>
+        <ol class="numbered-list">
+          <li><strong>Pattern extraction</strong> — derive features (location, tenure pattern, skills, certs) present in successful vs. unsuccessful hires.</li>
+          <li><strong>Weight delta calculation</strong> — features correlated with positive outcomes shift up; failures shift their features down.</li>
+          <li><strong>Confidence gating</strong> — adjustments only apply once a feature has at least 10 outcomes behind it. The first hire produces no adjustment; by the fiftieth, the model has meaningful signal.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Tab: Disagreements -->
+    <section id="disagreements" class="tab-panel" role="tabpanel">
+      <div class="card">
+        <h2>Stage 5b · Recruiter disagreement signal</h2>
+        <p class="caption">Every recruiter override is classified into one of five Section 8.1 types and stored as audit signal. Disagreement is faster than outcome signal but more biased, so it's weighted at 0.6 relative to outcomes (per Section 12).</p>
+
+        <div class="controls">
+          <div class="field">
+            <label for="dgCompany">Company</label>
+            <select id="dgCompany"><option value="">All companies</option></select>
+          </div>
+          <div class="field">
+            <label for="dgType">Disagreement type</label>
+            <select id="dgType"><option value="">All types</option></select>
+          </div>
+          <div class="field">
+            <label for="dgRecruiter">Recruiter</label>
+            <select id="dgRecruiter"><option value="">All recruiters</option></select>
+          </div>
+        </div>
+
+        <table>
+          <thead><tr><th>When</th><th>Recruiter</th><th>Company</th><th>Candidate</th><th>Job</th><th>Action</th><th>Type</th><th>Rank</th><th>Score</th><th>Reason</th></tr></thead>
+          <tbody id="dgBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Tab: Calibration -->
+    <section id="calibration" class="tab-panel" role="tabpanel">
+      <div class="card">
+        <h2>Stage 6 · Per-company calibration profile</h2>
+        <p class="caption">Each company carries an accumulated profile: explicit rules they set directly, plus learned feature weights derived from outcomes and overrides. Weights are clipped to <code>[0.2, 2.5]</code> so no single feature can dominate.</p>
+
+        <div class="controls">
+          <div class="field">
+            <label for="cpCompany">Company</label>
+            <select id="cpCompany"></select>
+          </div>
+        </div>
+
+        <div class="metric-row" id="cpMetrics"></div>
+
+        <div class="two-col">
+          <div>
+            <h3>Explicit rules</h3>
+            <p class="caption">Always take precedence over learned weights (Section 11.3 invariant).</p>
+            <pre class="json" id="cpRules"></pre>
+          </div>
+          <div>
+            <h3>Top learned feature weights</h3>
+            <p class="caption">Weights &gt; 1 amplify the raw similarity score; &lt; 1 dampen it.</p>
+            <div id="cpWeights"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Calibration change audit log</h3>
+        <p class="caption">Every weight adjustment is logged with its source event and rationale — the system's "traceable evidence" rubric element.</p>
+        <table>
+          <thead><tr><th>When</th><th>Feature</th><th>Old</th><th>New</th><th>Source</th><th>Rationale</th></tr></thead>
+          <tbody id="cpAuditBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="demo-footer-note">IS 303 · Generative AI · Spring 2026 · Charlie McChesney</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 CCM</p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

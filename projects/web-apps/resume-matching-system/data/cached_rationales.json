@@ -1,0 +1,80 @@
+{
+  "R001_manufacturing_tech::J001_lakeside_plastics": {
+    "resume_id": "R001_manufacturing_tech",
+    "job_id": "J001_lakeside_plastics",
+    "score": 0.560205340385437,
+    "rationale": "This candidate brings shared expertise in blueprint reading, injection molding, osha 10, which aligns with the Production Technician II requirements. Notable consideration: candidate is based in Green Bay, WI while the role is in Oshkosh, WI; otherwise no obvious gap."
+  },
+  "R002_rn_healthcare::J009_cascade_health": {
+    "resume_id": "R002_rn_healthcare",
+    "job_id": "J009_cascade_health",
+    "score": 0.7559597492218018,
+    "rationale": "This candidate brings shared expertise in acls, ehr (epic), patient assessment, which aligns with the REGISTERED NURSE \u2014 ICU requirements. Notable consideration: candidate is based in Milwaukee, WI while the role is in the posted location; otherwise no obvious gap."
+  },
+  "R003_marketing_specialist::J007_northwind_saas": {
+    "resume_id": "R003_marketing_specialist",
+    "job_id": "J007_northwind_saas",
+    "score": 0.721129834651947,
+    "rationale": "This candidate brings shared expertise in google ads, google analytics 4, hubspot, which aligns with the Demand Generation Manager requirements. Notable consideration: candidate is based in Remote while the role is in Madison, WI; otherwise no obvious gap."
+  },
+  "R004_sales_cs::J006_northwind_saas": {
+    "resume_id": "R004_sales_cs",
+    "job_id": "J006_northwind_saas",
+    "score": 0.6929651498794556,
+    "rationale": "This candidate brings shared expertise in account expansion, hubspot, qbrs, which aligns with the CUSTOMER SUCCESS MANAGER requirements. Notable consideration: candidate is based in Milwaukee, WI while the role is in the posted location; otherwise no obvious gap."
+  },
+  "R008_manufacturing_tech::J001_lakeside_plastics": {
+    "resume_id": "R008_manufacturing_tech",
+    "job_id": "J001_lakeside_plastics",
+    "score": 0.6397271156311035,
+    "rationale": "This candidate brings shared expertise in blueprint reading, injection molding, osha 10, which aligns with the Production Technician II requirements. Notable consideration: candidate is based in Appleton, WI while the role is in Oshkosh, WI; otherwise no obvious gap."
+  },
+  "R009_manufacturing_tech::J001_lakeside_plastics": {
+    "resume_id": "R009_manufacturing_tech",
+    "job_id": "J001_lakeside_plastics",
+    "score": 0.733657717704773,
+    "rationale": "This candidate brings shared expertise in blueprint reading, injection molding, osha 10, which aligns with the Production Technician II requirements. Notable consideration: candidate is based in Oshkosh, WI while the role is in Oshkosh, WI; otherwise no obvious gap."
+  },
+  "R013_sales_cs::J006_northwind_saas": {
+    "resume_id": "R013_sales_cs",
+    "job_id": "J006_northwind_saas",
+    "score": 0.8047995567321777,
+    "rationale": "This candidate brings shared expertise in account expansion, hubspot, qbrs, which aligns with the CUSTOMER SUCCESS MANAGER requirements. Notable consideration: candidate is based in Remote while the role is in the posted location; otherwise no obvious gap."
+  },
+  "R016_rn_healthcare::J009_cascade_health": {
+    "resume_id": "R016_rn_healthcare",
+    "job_id": "J009_cascade_health",
+    "score": 0.7805280089378357,
+    "rationale": "This candidate brings shared expertise in ehr (epic), patient assessment, telemetry, which aligns with the REGISTERED NURSE \u2014 ICU requirements. Notable consideration: candidate is based in Brookfield, WI while the role is in the posted location; otherwise no obvious gap."
+  },
+  "R017_sales_cs::J006_northwind_saas": {
+    "resume_id": "R017_sales_cs",
+    "job_id": "J006_northwind_saas",
+    "score": 0.7540853023529053,
+    "rationale": "This candidate brings shared expertise in account expansion, hubspot, qbrs, which aligns with the CUSTOMER SUCCESS MANAGER requirements. Notable consideration: candidate is based in Minneapolis, MN while the role is in the posted location; otherwise no obvious gap."
+  },
+  "R018_manufacturing_tech::J002_lakeside_plastics": {
+    "resume_id": "R018_manufacturing_tech",
+    "job_id": "J002_lakeside_plastics",
+    "score": 0.4947361350059509,
+    "rationale": "This candidate brings shared expertise in calipers and micrometers, iso 9001, which aligns with the Quality Inspector requirements. Notable consideration: candidate is based in Appleton, WI while the role is in Oshkosh, WI; otherwise no obvious gap."
+  },
+  "R019_marketing_specialist::J007_northwind_saas": {
+    "resume_id": "R019_marketing_specialist",
+    "job_id": "J007_northwind_saas",
+    "score": 0.8931851983070374,
+    "rationale": "This candidate brings shared expertise in google ads, google analytics 4, hubspot, which aligns with the Demand Generation Manager requirements. Notable consideration: candidate is based in Madison, WI while the role is in Madison, WI; otherwise no obvious gap."
+  },
+  "R023_saas_engineer::J005_northwind_saas": {
+    "resume_id": "R023_saas_engineer",
+    "job_id": "J005_northwind_saas",
+    "score": 1.0,
+    "rationale": "This candidate brings shared expertise in postgresql, python, react, which aligns with the Senior Full-Stack Engineer requirements. Notable consideration: candidate is based in Remote while the role is in Madison, WI; otherwise no obvious gap."
+  },
+  "R024_saas_engineer::J005_northwind_saas": {
+    "resume_id": "R024_saas_engineer",
+    "job_id": "J005_northwind_saas",
+    "score": 0.8310713768005371,
+    "rationale": "This candidate brings shared expertise in docker, postgresql, python, which aligns with the Senior Full-Stack Engineer requirements. Notable consideration: candidate is based in Remote while the role is in Madison, WI; otherwise no obvious gap."
+  }
+}

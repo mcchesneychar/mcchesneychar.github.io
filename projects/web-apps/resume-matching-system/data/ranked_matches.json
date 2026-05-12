@@ -1,0 +1,272 @@
+{
+  "raw": {
+    "R001_manufacturing_tech": [
+      {
+        "rank": 1,
+        "job_id": "J001_lakeside_plastics",
+        "score": 0.560205340385437
+      },
+      {
+        "rank": 2,
+        "job_id": "J002_lakeside_plastics",
+        "score": 0.3805510401725769
+      }
+    ],
+    "R002_rn_healthcare": [
+      {
+        "rank": 1,
+        "job_id": "J009_cascade_health",
+        "score": 0.7559597492218018
+      }
+    ],
+    "R003_marketing_specialist": [
+      {
+        "rank": 1,
+        "job_id": "J007_northwind_saas",
+        "score": 0.721129834651947
+      }
+    ],
+    "R004_sales_cs": [
+      {
+        "rank": 1,
+        "job_id": "J006_northwind_saas",
+        "score": 0.6929651498794556
+      }
+    ],
+    "R005_project_manager": [],
+    "R006_recent_grad_business": [],
+    "R007_finance_analyst": [],
+    "R008_manufacturing_tech": [
+      {
+        "rank": 1,
+        "job_id": "J001_lakeside_plastics",
+        "score": 0.6397271156311035
+      },
+      {
+        "rank": 2,
+        "job_id": "J002_lakeside_plastics",
+        "score": 0.40739724040031433
+      }
+    ],
+    "R009_manufacturing_tech": [
+      {
+        "rank": 1,
+        "job_id": "J001_lakeside_plastics",
+        "score": 0.733657717704773
+      }
+    ],
+    "R010_recent_grad_business": [],
+    "R011_finance_analyst": [],
+    "R012_project_manager": [],
+    "R013_sales_cs": [
+      {
+        "rank": 1,
+        "job_id": "J006_northwind_saas",
+        "score": 0.8047995567321777
+      }
+    ],
+    "R014_recent_grad_business": [],
+    "R015_project_manager": [],
+    "R016_rn_healthcare": [
+      {
+        "rank": 1,
+        "job_id": "J009_cascade_health",
+        "score": 0.7805280089378357
+      },
+      {
+        "rank": 2,
+        "job_id": "J010_cascade_health",
+        "score": 0.4339157044887543
+      }
+    ],
+    "R017_sales_cs": [
+      {
+        "rank": 1,
+        "job_id": "J006_northwind_saas",
+        "score": 0.7540853023529053
+      }
+    ],
+    "R018_manufacturing_tech": [
+      {
+        "rank": 1,
+        "job_id": "J002_lakeside_plastics",
+        "score": 0.4947361350059509
+      },
+      {
+        "rank": 2,
+        "job_id": "J001_lakeside_plastics",
+        "score": 0.43915116786956787
+      }
+    ],
+    "R019_marketing_specialist": [
+      {
+        "rank": 1,
+        "job_id": "J007_northwind_saas",
+        "score": 0.8931851983070374
+      }
+    ],
+    "R020_project_manager": [],
+    "R021_finance_analyst": [],
+    "R022_project_manager": [],
+    "R023_saas_engineer": [
+      {
+        "rank": 1,
+        "job_id": "J005_northwind_saas",
+        "score": 1.0
+      },
+      {
+        "rank": 2,
+        "job_id": "J008_northwind_saas",
+        "score": 0.3462945818901062
+      }
+    ],
+    "R024_saas_engineer": [
+      {
+        "rank": 1,
+        "job_id": "J005_northwind_saas",
+        "score": 0.8310713768005371
+      },
+      {
+        "rank": 2,
+        "job_id": "J008_northwind_saas",
+        "score": 0.4515509009361267
+      }
+    ],
+    "R025_recent_grad_business": []
+  },
+  "adjusted": {
+    "R001_manufacturing_tech": [
+      {
+        "rank": 1,
+        "job_id": "J001_lakeside_plastics",
+        "score": 0.560205340385437
+      },
+      {
+        "rank": 2,
+        "job_id": "J002_lakeside_plastics",
+        "score": 0.3805510401725769
+      }
+    ],
+    "R002_rn_healthcare": [
+      {
+        "rank": 1,
+        "job_id": "J009_cascade_health",
+        "score": 0.7559597492218018
+      }
+    ],
+    "R003_marketing_specialist": [
+      {
+        "rank": 1,
+        "job_id": "J007_northwind_saas",
+        "score": 0.721129834651947
+      }
+    ],
+    "R004_sales_cs": [
+      {
+        "rank": 1,
+        "job_id": "J006_northwind_saas",
+        "score": 0.6929651498794556
+      }
+    ],
+    "R005_project_manager": [],
+    "R006_recent_grad_business": [],
+    "R007_finance_analyst": [],
+    "R008_manufacturing_tech": [
+      {
+        "rank": 1,
+        "job_id": "J001_lakeside_plastics",
+        "score": 0.6397271156311035
+      },
+      {
+        "rank": 2,
+        "job_id": "J002_lakeside_plastics",
+        "score": 0.40739724040031433
+      }
+    ],
+    "R009_manufacturing_tech": [
+      {
+        "rank": 1,
+        "job_id": "J001_lakeside_plastics",
+        "score": 0.733657717704773
+      }
+    ],
+    "R010_recent_grad_business": [],
+    "R011_finance_analyst": [],
+    "R012_project_manager": [],
+    "R013_sales_cs": [
+      {
+        "rank": 1,
+        "job_id": "J006_northwind_saas",
+        "score": 0.8047995567321777
+      }
+    ],
+    "R014_recent_grad_business": [],
+    "R015_project_manager": [],
+    "R016_rn_healthcare": [
+      {
+        "rank": 1,
+        "job_id": "J009_cascade_health",
+        "score": 0.7805280089378357
+      },
+      {
+        "rank": 2,
+        "job_id": "J010_cascade_health",
+        "score": 0.4339157044887543
+      }
+    ],
+    "R017_sales_cs": [
+      {
+        "rank": 1,
+        "job_id": "J006_northwind_saas",
+        "score": 0.7540853023529053
+      }
+    ],
+    "R018_manufacturing_tech": [
+      {
+        "rank": 1,
+        "job_id": "J002_lakeside_plastics",
+        "score": 0.4947361350059509
+      },
+      {
+        "rank": 2,
+        "job_id": "J001_lakeside_plastics",
+        "score": 0.43915116786956787
+      }
+    ],
+    "R019_marketing_specialist": [
+      {
+        "rank": 1,
+        "job_id": "J007_northwind_saas",
+        "score": 0.8931851983070374
+      }
+    ],
+    "R020_project_manager": [],
+    "R021_finance_analyst": [],
+    "R022_project_manager": [],
+    "R023_saas_engineer": [
+      {
+        "rank": 1,
+        "job_id": "J005_northwind_saas",
+        "score": 1.0
+      },
+      {
+        "rank": 2,
+        "job_id": "J008_northwind_saas",
+        "score": 0.3462945818901062
+      }
+    ],
+    "R024_saas_engineer": [
+      {
+        "rank": 1,
+        "job_id": "J005_northwind_saas",
+        "score": 0.8310713768005371
+      },
+      {
+        "rank": 2,
+        "job_id": "J008_northwind_saas",
+        "score": 0.4515509009361267
+      }
+    ],
+    "R025_recent_grad_business": []
+  }
+}
