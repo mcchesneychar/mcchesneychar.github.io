@@ -1,0 +1,56 @@
+{
+  "_note": "Pre-computed by running ai-stepwise.py locally. Regenerate by re-running the script and copying the printed numbers here.",
+  "model_used": "claude-opus-4-7",
+  "temperature": 0,
+  "dataset": {
+    "name": "California Housing",
+    "source": "sklearn.datasets.fetch_california_housing",
+    "rows": 20640,
+    "raw_features": 8,
+    "target": "MedHouseVal (median house value, $100k units)",
+    "split": "80/20 train/test, random_state=1"
+  },
+  "prompt": "You are helping a predictive-analytics student improve a forward-stepwise linear regression on the California Housing dataset. The target is MedHouseVal (median house value, $100k units). The available raw columns are exactly: MedInc, HouseAge, AveRooms, AveBedrms, Population, AveOccup, Latitude, Longitude.\n\nPropose exactly 10 engineered features that may carry predictive power.\nRules:\n  * Use ONLY the raw columns listed above.\n  * Each feature must be a deterministic function of the raw columns.\n  * Briefly justify each suggestion (one sentence).\nRespond as JSON: a list of objects, each with keys \"name\", \"formula\", \"rationale\".",
+  "response": [
+    {"name": "rooms_per_person",  "formula": "AveRooms / AveOccup",                                                  "rationale": "Living space per occupant — strong housing-quality signal."},
+    {"name": "bedrooms_per_room", "formula": "AveBedrms / AveRooms",                                                  "rationale": "Bedroom share; lower values indicate larger living rooms / luxury."},
+    {"name": "log_medinc",        "formula": "log(MedInc)",                                                            "rationale": "Income effects on price are typically concave."},
+    {"name": "medinc_sq",         "formula": "MedInc ** 2",                                                            "rationale": "Captures convex high-income premium that linear MedInc misses."},
+    {"name": "log_population",    "formula": "log(Population)",                                                        "rationale": "Population is right-skewed; log stabilizes the relationship."},
+    {"name": "pop_per_occup",     "formula": "Population / AveOccup",                                                  "rationale": "Approximate household count in the block — neighborhood density."},
+    {"name": "dist_to_LA",        "formula": "sqrt((Latitude - 34.05)^2 + (Longitude + 118.24)^2)",                    "rationale": "Proximity to Los Angeles strongly drives California prices."},
+    {"name": "dist_to_SF",        "formula": "sqrt((Latitude - 37.77)^2 + (Longitude + 122.42)^2)",                    "rationale": "Proximity to San Francisco is a second major price gradient."},
+    {"name": "medinc_x_houseage", "formula": "MedInc * HouseAge",                                                      "rationale": "Old homes in rich areas (historic neighborhoods) price differently."},
+    {"name": "lat_x_long",        "formula": "Latitude * Longitude",                                                   "rationale": "Cheap nonlinear location term that flexibly captures geography."}
+  ],
+  "models": {
+    "A": {
+      "name": "Baseline stepwise",
+      "candidates_considered": 8,
+      "selected": ["MedInc", "HouseAge", "Latitude", "Longitude", "AveBedrms", "AveRooms", "AveOccup"],
+      "test_rmse": 0.7274,
+      "blurb": "Forward stepwise on the 8 raw features. The honest no-frills baseline."
+    },
+    "B": {
+      "name": "AI-augmented stepwise",
+      "candidates_considered": 18,
+      "selected": ["MedInc", "bedrooms_per_room", "HouseAge", "medinc_sq", "rooms_per_person", "AveRooms", "log_medinc", "pop_per_occup", "Latitude", "Longitude", "AveBedrms", "dist_to_LA", "medinc_x_houseage", "Population", "lat_x_long", "log_population"],
+      "test_rmse": 0.6963,
+      "blurb": "8 raw features + 10 LLM-suggested engineered features. Domain knowledge curated by Claude."
+    },
+    "C": {
+      "name": "Kitchen-sink stepwise",
+      "candidates_considered": 44,
+      "selected_count": 43,
+      "test_rmse": 0.6634,
+      "blurb": "8 raw + every pairwise product (28) + every square (8). Brute-force expansion of the search space."
+    }
+  },
+  "interpretation": {
+    "winner": "C",
+    "b_beats_a_by": 0.0312,
+    "b_beats_a_pct": 4.28,
+    "c_beats_b_by": 0.0329,
+    "verdict": "Model C wins outright on this split, but Model B got 4.3% closer to it than Model A while considering only 41% as many candidate features as C. The LLM's domain knowledge is doing real work — it found most of the predictive signal without brute-forcing every interaction — but on a dataset this size the kitchen-sink expansion still squeezes out additional accuracy."
+  }
+}

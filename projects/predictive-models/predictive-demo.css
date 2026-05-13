@@ -1,0 +1,252 @@
+/* Shared styles for the interactive demos on every predictive-model page.
+   Builds on uncs-style.css — uses the same CSS variables. */
+
+.demo-card { padding: 2rem; }
+
+.demo-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin: 1.25rem 0 1.5rem;
+  align-items: flex-end;
+}
+.demo-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  color: var(--color-text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.demo-controls select,
+.demo-controls input[type="number"],
+.demo-controls input[type="range"] {
+  background: var(--color-bg-card);
+  color: var(--color-text-1);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  min-width: 9rem;
+}
+.demo-controls input[type="range"] { padding: 0.5rem 0; min-width: 12rem; }
+.demo-controls select:hover,
+.demo-controls input[type="number"]:hover,
+.demo-controls input[type="range"]:hover { border-color: var(--color-accent-org); }
+.demo-controls .range-value {
+  font-family: var(--font-display);
+  color: var(--color-accent-org);
+  font-weight: 600;
+}
+.demo-controls button {
+  background: var(--color-bg-card);
+  color: var(--color-text-1);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 0.6rem 1.4rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.demo-controls button:hover {
+  background: rgba(255, 123, 0, 0.1);
+  border-color: var(--color-accent-org);
+  color: var(--color-accent-org);
+  transform: translateY(-2px);
+}
+
+.demo-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.demo-stat {
+  padding: 0.85rem 1rem;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.demo-stat .label {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-3);
+}
+.demo-stat .value {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-accent-org);
+  margin-top: 0.25rem;
+  word-break: break-word;
+}
+
+.demo-output {
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  font-family: 'SF Mono', 'Menlo', monospace;
+  font-size: 0.9rem;
+  color: var(--color-text-2);
+  overflow-x: auto;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+[data-theme="light"] .demo-output { background: rgba(0, 0, 0, 0.04); }
+.demo-output .feature { color: var(--color-accent-org); font-weight: 600; }
+.demo-output .branch  { color: var(--color-accent-yel); }
+.demo-output .leaf    { color: var(--color-text-1); font-weight: 600; }
+.demo-output .pos     { color: var(--color-accent-org); font-weight: 600; }
+.demo-output .neg     { color: var(--color-text-3); }
+
+.demo-status {
+  font-size: 0.85rem;
+  color: var(--color-text-3);
+  margin-top: 0.75rem;
+  font-style: italic;
+}
+
+/* Predictions table (used by k-NN, naive bayes) */
+.demo-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  margin-top: 0.75rem;
+}
+.demo-table th, .demo-table td {
+  padding: 0.6rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+.demo-table th {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-3);
+}
+.demo-table .ok  { color: var(--color-accent-org); font-weight: 600; }
+.demo-table .bad { color: var(--color-accent-red); font-weight: 600; }
+
+/* Probability / RMSE bars (naive bayes, AI-stepwise) */
+.bar-row {
+  display: grid;
+  grid-template-columns: 9rem 1fr 4rem;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+}
+.bar-row .label { color: var(--color-text-2); }
+.bar-row .track {
+  height: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: 7px;
+  overflow: hidden;
+}
+[data-theme="light"] .bar-row .track { background: rgba(0, 0, 0, 0.05); }
+.bar-row .fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent-red), var(--color-accent-org), var(--color-accent-yel));
+  transition: width 0.4s ease;
+}
+.bar-row .num {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-align: right;
+  color: var(--color-text-1);
+}
+
+/* Convergence chart canvas (gradient descent) */
+.demo-canvas {
+  width: 100%;
+  max-width: 100%;
+  height: 280px;
+  display: block;
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  margin-top: 0.5rem;
+}
+[data-theme="light"] .demo-canvas { background: rgba(0, 0, 0, 0.04); }
+
+/* Storyboard buttons (AI-stepwise) */
+.storyboard-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.25rem 0 1.5rem;
+}
+.storyboard-tabs button {
+  flex: 1;
+  min-width: 8rem;
+  background: var(--color-bg-card);
+  color: var(--color-text-2);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 0.7rem 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.storyboard-tabs button.active {
+  background: rgba(255, 123, 0, 0.12);
+  border-color: var(--color-accent-org);
+  color: var(--color-accent-org);
+}
+.storyboard-tabs button:hover { transform: translateY(-2px); }
+
+.storyboard-step { display: none; }
+.storyboard-step.active { display: block; }
+
+.feature-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+.feature-list .feature-item {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0.7rem 0.95rem;
+}
+.feature-list .feature-item .name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-accent-org);
+  font-size: 0.95rem;
+}
+.feature-list .feature-item .formula {
+  font-family: 'SF Mono', 'Menlo', monospace;
+  font-size: 0.85rem;
+  color: var(--color-text-2);
+  margin: 0.15rem 0;
+}
+.feature-list .feature-item .rationale {
+  font-size: 0.88rem;
+  color: var(--color-text-3);
+}

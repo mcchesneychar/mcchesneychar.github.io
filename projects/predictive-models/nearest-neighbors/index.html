@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nearest Neighbors — CCM's Portfolio</title>
+  <link rel="stylesheet" href="../../../uncs-style.css">
+  <link rel="stylesheet" href="../predictive-demo.css">
+  <script src="../../../theme.js"></script>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-spacer" aria-hidden="true"></div>
+      <ul class="nav-links">
+        <li><a href="../../../index.html">Home</a></li>
+        <li><a href="../../../projects.html" class="active">Projects</a></li>
+        <li><a href="../../../contact.html">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <p class="hero-label">Predictive Model</p>
+      <h1 class="hero-name">Nearest Neighbors</h1>
+      <p class="hero-tagline">Distance-based prediction with k and a metric of your choice</p>
+      <div class="hero-divider"></div>
+    </section>
+
+    <section class="about">
+      <div class="about-card">
+        <h2>How it works</h2>
+        <p>This was the third-section assignment for my <strong>Predictive Analytics (ECON 475)</strong> class — a from-scratch implementation of <strong>k-nearest neighbors</strong>. To predict a new observation, the algorithm computes its distance to every training point, takes the closest <em>k</em>, and returns the majority label among them.</p>
+        <p>The interesting design choice is the distance metric. <strong>Euclidean</strong> measures straight-line distance and is the default; <strong>Manhattan</strong> sums the absolute differences (better when features move on independent grids); <strong>Minkowski-3</strong> generalizes both with a cubic exponent; <strong>cosine</strong> measures the angle between vectors and is magnitude-invariant — critical when class identity lives in <em>direction</em> rather than scale.</p>
+        <p>The same dataset is then handed to sklearn's <code>KNeighborsClassifier</code> with two backends — <code>kd_tree</code> and <code>brute</code> — to compare wall-clock time.</p>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="about-card demo-card">
+        <h2>Interactive demo</h2>
+        <p>Predict on a held-out test split using your choice of <em>k</em> and metric. The five sample predictions below let you eyeball where the classifier agrees with the ground truth and where it slips.</p>
+        <div class="demo-controls">
+          <label>k
+            <input id="k" type="range" min="1" max="25" value="5"/>
+            <span class="range-value" id="kval">5</span>
+          </label>
+          <label>Metric
+            <select id="metric">
+              <option value="Euclidean" selected>Euclidean</option>
+              <option value="Manhattan">Manhattan</option>
+              <option value="Minkowski3">Minkowski (p=3)</option>
+              <option value="Cosine">Cosine</option>
+            </select>
+          </label>
+          <label>Test sample size
+            <select id="testN">
+              <option value="20" selected>20 rows</option>
+              <option value="50">50 rows</option>
+              <option value="100">100 rows</option>
+              <option value="200">200 rows</option>
+            </select>
+          </label>
+        </div>
+        <div class="demo-results">
+          <div class="demo-stat"><div class="label">Train rows</div><div class="value" id="trainN">—</div></div>
+          <div class="demo-stat"><div class="label">Test rows</div><div class="value" id="testRows">—</div></div>
+          <div class="demo-stat"><div class="label">Test acc</div><div class="value" id="acc">—</div></div>
+          <div class="demo-stat"><div class="label">Time</div><div class="value" id="time">—</div></div>
+        </div>
+        <table class="demo-table" id="predTable">
+          <thead><tr><th>#</th><th>Predicted</th><th>Actual</th><th>Match</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <div class="demo-status" id="status">Loading dataset…</div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="about-card">
+        <h2>Use cases</h2>
+        <p>k-NN is the simplest possible "intelligent" classifier — there's no training step at all, just a stored dataset and a distance function. That makes it a great baseline for tabular problems and a natural choice for recommender systems, anomaly detection (flag points whose nearest neighbors are far away), and image / document retrieval where similarity in some learned embedding space <em>is</em> the prediction.</p>
+        <p>Its main weaknesses are computational (every prediction touches every training point unless you use a spatial index like a kd-tree) and statistical: high-dimensional spaces dilute distance, so feature scaling and dimensionality reduction matter a lot.</p>
+        <div class="btn-row">
+          <a href="nearest-neighbors.zip" class="project-btn" download>Download .zip (Python source + dataset + README)</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 CCM</p>
+  </footer>
+
+  <script src="demo.js"></script>
+</body>
+</html>

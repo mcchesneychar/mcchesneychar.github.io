@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Augmented Stepwise — CCM's Portfolio</title>
+  <link rel="stylesheet" href="../../../uncs-style.css">
+  <link rel="stylesheet" href="../predictive-demo.css">
+  <script src="../../../theme.js"></script>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-spacer" aria-hidden="true"></div>
+      <ul class="nav-links">
+        <li><a href="../../../index.html">Home</a></li>
+        <li><a href="../../../projects.html" class="active">Projects</a></li>
+        <li><a href="../../../contact.html">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <p class="hero-label">ECON 475 Final Project</p>
+      <h1 class="hero-name">AI-Augmented Stepwise</h1>
+      <p class="hero-tagline">Can a language model out-curate brute-force feature engineering?</p>
+      <div class="hero-divider"></div>
+    </section>
+
+    <section class="about">
+      <div class="about-card">
+        <h2>The experiment</h2>
+        <p>This was the final project for my <strong>Predictive Analytics (ECON 475)</strong> class — a head-to-head comparison of three forward-stepwise linear regressions on the California Housing dataset (20,640 rows, 8 raw features, target = median house value). The question: <em>does an LLM's curated feature suggestions actually buy you anything that brute force doesn't already give you?</em></p>
+        <p><strong>Model A</strong> is the honest baseline — stepwise on the 8 raw features, no engineering. <strong>Model B</strong> is the AI-augmented run — same 8 raw features, plus 10 engineered features Claude generated when given only the column names and the target. <strong>Model C</strong> is the kitchen sink — 8 raw features, every pairwise product, and every square. 44 candidates total. It's what you'd build if you'd never heard of Occam's razor.</p>
+        <p>All three models use the same forward-stepwise selection (minimize AIC), the same 80/20 train/test split, and are scored on the same holdout RMSE. The only thing that differs is the candidate-feature pool.</p>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="about-card demo-card">
+        <h2>Interactive walkthrough</h2>
+        <p>Step through the project's pipeline — the prompt sent to Claude, the JSON it returned, the features it produced, and the head-to-head RMSE comparison across all three models.</p>
+        <div class="storyboard-tabs" id="tabs">
+          <button data-step="prompt" class="active">1 · Prompt</button>
+          <button data-step="response">2 · Response</button>
+          <button data-step="features">3 · Features built</button>
+          <button data-step="comparison">4 · RMSE comparison</button>
+        </div>
+
+        <div class="storyboard-step active" data-step="prompt">
+          <p style="color: var(--color-text-3); margin-bottom: 0.5rem; font-size: 0.9rem;">
+            Sent to <code id="modelTag">claude-opus-4-7</code> at temperature 0.
+          </p>
+          <div class="demo-output" id="promptText">Loading…</div>
+        </div>
+
+        <div class="storyboard-step" data-step="response">
+          <p style="color: var(--color-text-3); margin-bottom: 0.5rem; font-size: 0.9rem;">
+            Raw JSON Claude returned. Each entry is a deterministic function of the 8 raw columns.
+          </p>
+          <div class="demo-output" id="responseText">Loading…</div>
+        </div>
+
+        <div class="storyboard-step" data-step="features">
+          <p style="color: var(--color-text-3); margin-bottom: 0.5rem; font-size: 0.9rem;">
+            Each engineered feature added to Model B's candidate pool, with Claude's one-line rationale.
+          </p>
+          <div class="feature-list" id="featureList">Loading…</div>
+        </div>
+
+        <div class="storyboard-step" data-step="comparison">
+          <p style="color: var(--color-text-3); margin-bottom: 0.5rem; font-size: 0.9rem;">
+            Test-set RMSE and candidate-feature counts for all three models. Lower RMSE is better.
+          </p>
+          <div class="demo-results" id="rmseStats"></div>
+          <h3 style="font-family: var(--font-display); font-size: 1.05rem; color: var(--color-text-2); margin: 1rem 0 0.6rem;">Test RMSE (lower is better)</h3>
+          <div id="rmseBars"></div>
+          <h3 style="font-family: var(--font-display); font-size: 1.05rem; color: var(--color-text-2); margin: 1.5rem 0 0.6rem;">Verdict</h3>
+          <p id="verdict" style="color: var(--color-text-2);">Loading…</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="about-card">
+        <h2>Why the LLM is not called live</h2>
+        <p>The site itself ships a pre-baked Claude response rather than calling an LLM in your browser. Two reasons. <strong>First</strong>: GitHub Pages is purely static, so any API key shipped to the page would be public. <strong>Second</strong>: asking visitors to paste their own key into a website they don't fully trust is friction nobody actually wants.</p>
+        <p>The downloadable Python source contains a commented-out block sketching how a live API call <em>would</em> be wired in (load <code>LLM_API_KEY</code> from a <code>.env</code> file, call your provider of choice, parse the returned JSON, build features). If you'd like to regenerate fresh suggestions yourself, the wiring is right there.</p>
+        <div class="btn-row">
+          <a href="ai-stepwise.zip" class="project-btn" download>Download .zip (Python source + README + requirements)</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 CCM</p>
+  </footer>
+
+  <script src="demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decision Trees — CCM's Portfolio</title>
+  <link rel="stylesheet" href="../../../uncs-style.css">
+  <link rel="stylesheet" href="../predictive-demo.css">
+  <script src="../../../theme.js"></script>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-spacer" aria-hidden="true"></div>
+      <ul class="nav-links">
+        <li><a href="../../../index.html">Home</a></li>
+        <li><a href="../../../projects.html" class="active">Projects</a></li>
+        <li><a href="../../../contact.html">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <p class="hero-label">Predictive Model</p>
+      <h1 class="hero-name">Decision Trees</h1>
+      <p class="hero-tagline">ID3 information-gain splits, from scratch + sklearn</p>
+      <div class="hero-divider"></div>
+    </section>
+
+    <section class="about">
+      <div class="about-card">
+        <h2>How it works</h2>
+        <p>This was the second-section assignment for my <strong>Predictive Analytics (ECON 475)</strong> class — a from-scratch implementation of the <strong>ID3 algorithm</strong>. At each split it scores every candidate feature by <em>information gain</em> (the parent node's entropy minus the weighted entropy of the children) and picks the one that reduces uncertainty the most.</p>
+        <p>The tree is grown to depth 2: the root pick partitions the data once, then each branch picks its own best feature for the second level. Leaves return the majority class of whatever observations land there. The same dataset is then handed to sklearn's <code>DecisionTreeClassifier</code> at depths 2–5 so you can see how additional depth trades off training accuracy against test accuracy on the same 70/30 split.</p>
+        <p>The dataset is a 1,054-row criminal-justice survey: seven binary descriptive features (marital status, urban residence, union membership, HS graduation, brother is a criminal, prior probation, prior charges) predicting whether the person committed a crime.</p>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="about-card demo-card">
+        <h2>Interactive demo</h2>
+        <p>Build a tree on the live dataset. Pick a depth, split criterion, and random seed for the train/test split, then see the resulting tree structure and accuracy.</p>
+        <div class="demo-controls">
+          <label>Depth
+            <select id="depth">
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </label>
+          <label>Criterion
+            <select id="criterion">
+              <option value="entropy" selected>Entropy</option>
+              <option value="gini">Gini</option>
+            </select>
+          </label>
+          <label>Random seed
+            <input id="seed" type="number" value="2" min="0" max="9999"/>
+          </label>
+        </div>
+        <div class="demo-results">
+          <div class="demo-stat"><div class="label">Rows</div><div class="value" id="rows">—</div></div>
+          <div class="demo-stat"><div class="label">Train acc</div><div class="value" id="trainAcc">—</div></div>
+          <div class="demo-stat"><div class="label">Test acc</div><div class="value" id="testAcc">—</div></div>
+          <div class="demo-stat"><div class="label">Leaves</div><div class="value" id="leaves">—</div></div>
+        </div>
+        <div class="demo-output" id="tree">Loading dataset…</div>
+        <div class="demo-status" id="status"></div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="about-card">
+        <h2>Use cases</h2>
+        <p>Decision trees shine when interpretability matters as much as accuracy — credit-risk scoring, medical triage, or any setting where a regulator or domain expert needs to read the rule. They handle mixed feature types natively, need no scaling, and the output is a sequence of human-readable if/then statements.</p>
+        <p>Their main weakness is high variance: small dataset changes can flip which feature wins at the root. In production they're almost always wrapped in an ensemble — random forests or gradient-boosted trees — that averages many shallow trees to stabilize predictions.</p>
+        <div class="btn-row">
+          <a href="decision-trees.zip" class="project-btn" download>Download .zip (Python source + dataset + README)</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 CCM</p>
+  </footer>
+
+  <script src="demo.js"></script>
+</body>
+</html>

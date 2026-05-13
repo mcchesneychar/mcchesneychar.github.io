@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naive Bayes — CCM's Portfolio</title>
+  <link rel="stylesheet" href="../../../uncs-style.css">
+  <link rel="stylesheet" href="../predictive-demo.css">
+  <script src="../../../theme.js"></script>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-spacer" aria-hidden="true"></div>
+      <ul class="nav-links">
+        <li><a href="../../../index.html">Home</a></li>
+        <li><a href="../../../projects.html" class="active">Projects</a></li>
+        <li><a href="../../../contact.html">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <p class="hero-label">Predictive Model</p>
+      <h1 class="hero-name">Naive Bayes</h1>
+      <p class="hero-tagline">Bayesian MAP with feature-independence + Laplace smoothing</p>
+      <div class="hero-divider"></div>
+    </section>
+
+    <section class="about">
+      <div class="about-card">
+        <h2>How it works</h2>
+        <p>This was the fourth-section assignment for my <strong>Predictive Analytics (ECON 475)</strong> class. Naive Bayes uses Bayes' theorem to invert P(features | class) into P(class | features), then picks whichever class has the highest posterior probability — a maximum a posteriori (MAP) estimate.</p>
+        <p>The "naive" assumption is that features are conditionally independent given the class. That's almost always false, but it lets you replace one giant joint probability table (which needs an exponential amount of data to estimate) with a product of small per-feature probabilities. The estimated probabilities are then smoothed via <strong>Laplace</strong> (add-k) so unseen feature values don't drive a probability to zero.</p>
+        <p>For continuous features (hours worked, wage, education, work experience), each per-class likelihood is modeled as a <strong>Gaussian</strong> fit to the within-class mean and standard deviation.</p>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="about-card demo-card">
+        <h2>Interactive demo</h2>
+        <p>Pick a feature set and Laplace smoothing strength, then see the per-class posterior probability bars for a chosen test row alongside the model's overall accuracy on the full dataset.</p>
+        <div class="demo-controls">
+          <label>Features
+            <select id="featureSet">
+              <option value="discrete" selected>Discrete (7 features)</option>
+              <option value="continuous">Continuous (4 features, Gaussian)</option>
+            </select>
+          </label>
+          <label>Laplace k
+            <input id="laplace" type="range" min="0" max="5" step="1" value="1"/>
+            <span class="range-value" id="laplaceVal">1</span>
+          </label>
+          <label>Row to inspect
+            <input id="rowIdx" type="number" value="0" min="0" max="1053"/>
+          </label>
+        </div>
+        <div class="demo-results">
+          <div class="demo-stat"><div class="label">Rows</div><div class="value" id="rows">—</div></div>
+          <div class="demo-stat"><div class="label">Predicted</div><div class="value" id="predicted">—</div></div>
+          <div class="demo-stat"><div class="label">Actual</div><div class="value" id="actual">—</div></div>
+          <div class="demo-stat"><div class="label">Test accuracy</div><div class="value" id="acc">—</div></div>
+        </div>
+        <h3 style="font-family: var(--font-display); font-size: 1.05rem; color: var(--color-text-2); margin: 1rem 0 0.6rem;">Posterior probabilities (normalized)</h3>
+        <div id="probBars"></div>
+        <div class="demo-status" id="status">Loading dataset…</div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="about-card">
+        <h2>Use cases</h2>
+        <p>Naive Bayes is the workhorse of text classification — spam filters, sentiment analysis, topic tagging — because it scales linearly with both vocabulary size and document count, trains in a single pass over the data, and remains surprisingly competitive even when its independence assumption is violated.</p>
+        <p>It's also a common first-pass baseline for medical diagnosis and recommender systems. Its weaknesses show up when features are strongly correlated (think pixel intensities in adjacent image regions) or when one needs well-calibrated probability estimates rather than just a top-1 label.</p>
+        <div class="btn-row">
+          <a href="naive-bayes.zip" class="project-btn" download>Download .zip (Python source + dataset + README)</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 CCM</p>
+  </footer>
+
+  <script src="demo.js"></script>
+</body>
+</html>

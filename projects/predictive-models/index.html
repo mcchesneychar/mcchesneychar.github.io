@@ -19,15 +19,7 @@
       </ul>
       <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
         <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="5"/>
-          <line x1="12" y1="1" x2="12" y2="3"/>
-          <line x1="12" y1="21" x2="12" y2="23"/>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-          <line x1="1" y1="12" x2="3" y2="12"/>
-          <line x1="21" y1="12" x2="23" y2="12"/>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
         </svg>
         <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
@@ -47,7 +39,56 @@
 
     <section class="about">
       <div class="about-card">
-        <h2>Coming Soon</h2>
+        <h2>Decision Trees</h2>
+        <p>A from-scratch implementation of the <strong>ID3 algorithm</strong> — pick splits by information gain, grow to depth 2, predict by majority vote at each leaf — alongside a comparison against sklearn's <code>DecisionTreeClassifier</code> at depths 2 through 5. Built for my <strong>Predictive Analytics (ECON 475)</strong> class.</p>
+        <p>The interactive demo lets you choose depth, criterion (entropy vs. Gini), and a random seed for the train/test split, then renders the actual tree alongside live train/test accuracy.</p>
+        <div class="btn-row">
+          <a href="decision-trees/index.html" class="project-btn">Open Decision Trees</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="about-card">
+        <h2>Nearest Neighbors</h2>
+        <p>A from-scratch <strong>k-NN classifier</strong> with selectable distance metric (Euclidean, Manhattan, Minkowski-3, cosine), a sklearn benchmark comparing <code>kd_tree</code> vs <code>brute</code> backends, and a synthetic dataset where cosine similarity meaningfully outperforms magnitude-based distances.</p>
+        <p>The interactive demo lets you tune <em>k</em> and the metric, then shows the test-set accuracy and a sample of predictions against ground truth.</p>
+        <div class="btn-row">
+          <a href="nearest-neighbors/index.html" class="project-btn">Open Nearest Neighbors</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="about-card">
+        <h2>Naive Bayes</h2>
+        <p>Both the <strong>full-joint Bayesian MAP</strong> classifier and the <strong>Naive Bayes</strong> approximation, with Laplace smoothing for discrete features and a Gaussian likelihood for continuous ones. The independence assumption is almost always wrong — and the classifier almost always works anyway.</p>
+        <p>The interactive demo lets you flip between discrete and continuous feature sets, tune Laplace smoothing strength, and inspect the per-class posterior probability bars for any row in the dataset.</p>
+        <div class="btn-row">
+          <a href="naive-bayes/index.html" class="project-btn">Open Naive Bayes</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="about-card">
+        <h2>Gradient Descent</h2>
+        <p><strong>Batch gradient descent</strong> for linear and logistic regression, written from scratch — MSE for linear, binary cross-entropy with a numerically stable sigmoid for logistic, plus a safety brake that halts if the loss bumps upward. The "extra credit" path standardizes the feature so descent converges from a random initialization in under 1,000 steps.</p>
+        <p>The interactive demo fits the live dataset, plots the loss curve dropping step-by-step on a canvas, and lets you tune the learning rate, standardization, and mode in real time.</p>
+        <div class="btn-row">
+          <a href="gradient-descent/index.html" class="project-btn">Open Gradient Descent</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="about-card">
+        <h2>AI-Augmented Stepwise</h2>
+        <p>My <strong>Generative AI for Business and Data Analysis (IS 303)</strong> + ECON 475 final-project crossover: a head-to-head between three forward-stepwise regressions on California Housing. A baseline on 8 raw features, an AI-augmented version where Claude proposes 10 engineered features given only the column names and target, and a kitchen-sink expansion with every pairwise product and square. The question: can an LLM's domain knowledge match brute-force search?</p>
+        <p>The interactive walkthrough steps you through the exact prompt sent to Claude, the JSON response that came back, each generated feature with its rationale, and the final RMSE comparison across all three models.</p>
+        <div class="btn-row">
+          <a href="ai-stepwise/index.html" class="project-btn">Open AI-Augmented Stepwise</a>
+        </div>
       </div>
     </section>
 
